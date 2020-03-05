@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "RegistroDeIncidencias";
+}
+<link href="~/Content/configuracionFormularios.css" rel="stylesheet" />
+
+<script>
+    function myFunction() {
+      var x = document.createElement("INPUT");
+      x.setAttribute("type", "file");
+      document.body.appendChild(x);
+    }
+</script>
+
+<h2>Registro de incidencias</h2>
+
+<br />
+<br />
+
+<br />
+<div class="EnLinea">
+    <div class="EnLinea">
+        <div>C&eacute;dula:&nbsp;</div>
+        <div><input type="text" id="txtCedulaUsuario" disabled="disabled" /></div>
+    </div>
+
+    <div class="EnLinea">
+        <div>Nombre:&nbsp;</div>
+        <div><input type="text" id="txtNombreUsuario" disabled="disabled" /></div>
+    </div>
+
+    <div class="EnLinea">
+        <div>Primer Apellido:&nbsp;</div>
+        <div><input type="text" id="txtPrimerApellido" disabled="disabled" /></div>
+    </div>
+    <div class="EnLinea">
+        <div>Segundo Apellido:&nbsp;</div>
+        <div><input type="text" id="txtSegundoApellido" disabled="disabled" /></div>
+    </div>
+</div>
+<br />
+<br />
+<div>
+    <div class="EnLinea">
+        <div>Categoria:&nbsp;</div>
+        <div><input type="" id="txtSegundoApellido" /></div>
+    </div>
+    <div class="EnLinea">
+        <div>Empresa:&nbsp;</div>
+        <div><input type="text" id="txtCanton" /></div>
+    </div>
+</div>
+<br />
+<div>
+
+    <div class="EnLinea">
+        <div>Provincia:&nbsp;</div>
+        <div><input type="text" id="txtProvincia" /></div>
+    </div>
+
+    <div class="EnLinea">
+        <div>Cant&oacute;n:&nbsp;</div>
+        <div><input type="text" id="txtCanton" /></div>
+    </div>
+
+    <div class="EnLinea">
+        <div>Distrito:&nbsp;</div>
+        <div><input type="text" id="txtDistrito" /></div>
+    </div>
+
+    <div class="EnLinea">
+        <div>Direcci&oacute;n exacta:&nbsp;</div>
+        <div><input type="text" id="txtDireccion" /></div>
+    </div>
+</div>
+
+<br />
+
+<div>
+
+    <div class="EnLinea">
+        <div>Geo Referencia:&nbsp;</div>
+        <div><input type="text" id="txtGeoReferencia" /></div>
+    </div>
+
+    <div class="EnLinea">
+        <div>Detalle incidente:&nbsp;</div>
+        <div><input type="text" id="txtDetalle" multiline="true" /></div>
+    </div>
+</div>
+
+<br />
+
+<div>
+    <div class="EnLinea">
+        <div>Fotograf&iacute;a:&nbsp;</div>
+        <div><input type="button" id="btnCargar" onclick="myFunction()" value="Cargar Fotografía" /></div>
+    </div>
+</div>
+
+<br /><br />
+
+<div>
+    <div>
+        <input type="button" value="Aceptar" id="btnAceptar"/>
+    
+        <input type="button" value="Cancelar" id="btnCancelar" />
+    </div>
+</div>

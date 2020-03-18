@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Modelincidencia" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="ModelincidenciaContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="usuarioSet" EntityType="Modelincidencia.usuario" />
+    <EntitySet Name="habilitado" EntityType="Modelincidencia.estado_habilitado" />
+    <AssociationSet Name="habilitadousuario" Association="Modelincidencia.habilitadousuario">
+      <End Role="habilitado" EntitySet="habilitado" />
+      <End Role="usuario" EntitySet="usuarioSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="Id_usuario" />
+    </Key>
+    <Property Name="Id_usuario" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="habilitado" Relationship="Modelincidencia.habilitadousuario" FromRole="usuario" ToRole="habilitado" />
+    <Property Name="habilitado_id" Type="Int16" Nullable="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="primer_apellido" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="segundo_apellido" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="correo_electronico" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="contrasena" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="estado_habilitado">
+    <Key>
+      <PropertyRef Name="Id_habilitado" />
+    </Key>
+    <Property Name="Id_habilitado" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="habilitar" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="usuario" Relationship="Modelincidencia.habilitadousuario" FromRole="habilitado" ToRole="usuario" />
+  </EntityType>
+  <Association Name="habilitadousuario">
+    <End Type="Modelincidencia.estado_habilitado" Role="habilitado" Multiplicity="1" />
+    <End Type="Modelincidencia.usuario" Role="usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="habilitado">
+        <PropertyRef Name="Id_habilitado" />
+      </Principal>
+      <Dependent Role="usuario">
+        <PropertyRef Name="habilitado_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelincidenciaStoreContainer" CdmEntityContainer="ModelincidenciaContainer">
+    <EntitySetMapping Name="usuarioSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelincidencia.usuario)">
+        <MappingFragment StoreEntitySet="usuarioSet">
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+          <ScalarProperty Name="Id_usuario" ColumnName="Id_usuario" />
+          <ScalarProperty Name="habilitado_id" ColumnName="habilitado_id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="primer_apellido" ColumnName="primer_apellido" />
+          <ScalarProperty Name="segundo_apellido" ColumnName="segundo_apellido" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="habilitado">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelincidencia.estado_habilitado)">
+        <MappingFragment StoreEntitySet="habilitado">
+          <ScalarProperty Name="Id_habilitado" ColumnName="Id_habilitado" />
+          <ScalarProperty Name="habilitar" ColumnName="habilitar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

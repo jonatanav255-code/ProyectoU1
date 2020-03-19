@@ -5,12 +5,35 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Modelincidencia.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="canton">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_canton" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="provinciaId" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="distrito">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_distrito" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="cantonId" Type="smallint" Nullable="false" />
+        </EntityType>
         <EntityType Name="habilitado">
           <Key>
             <PropertyRef Name="Id_habilitado" />
           </Key>
           <Property Name="Id_habilitado" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="habilitar" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="provincia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_provincia" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="usuario">
           <Key>
@@ -25,25 +48,45 @@
           <Property Name="contrasena" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="direccion" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="codigo_activacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="10" />
         </EntityType>
-        <Association Name="FK_habilitadousuario">
-          <End Role="habilitado" Type="Self.habilitado" Multiplicity="1" />
-          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+        <Association Name="FK_cantondistrito">
+          <End Role="canton" Type="Self.canton" Multiplicity="1" />
+          <End Role="distrito" Type="Self.distrito" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="habilitado">
-              <PropertyRef Name="Id_habilitado" />
+            <Principal Role="canton">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="usuario">
-              <PropertyRef Name="habilitado_id" />
+            <Dependent Role="distrito">
+              <PropertyRef Name="cantonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_provincia_id">
+          <End Role="provincia" Type="Self.provincia" Multiplicity="1" />
+          <End Role="canton" Type="Self.canton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="provincia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="canton">
+              <PropertyRef Name="provinciaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ModelincidenciaStoreContainer">
+          <EntitySet Name="canton" EntityType="Self.canton" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="distrito" EntityType="Self.distrito" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="habilitado" EntityType="Self.habilitado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="provincia" EntityType="Self.provincia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_habilitadousuario" Association="Self.FK_habilitadousuario">
-            <End Role="habilitado" EntitySet="habilitado" />
-            <End Role="usuario" EntitySet="usuario" />
+          <AssociationSet Name="FK_cantondistrito" Association="Self.FK_cantondistrito">
+            <End Role="canton" EntitySet="canton" />
+            <End Role="distrito" EntitySet="distrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_provincia_id" Association="Self.FK_provincia_id">
+            <End Role="provincia" EntitySet="provincia" />
+            <End Role="canton" EntitySet="canton" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -56,6 +99,17 @@
           <AssociationSet Name="habilitadousuario" Association="Modelincidencia.habilitadousuario">
             <End Role="habilitado" EntitySet="habilitado" />
             <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <EntitySet Name="provincia" EntityType="Modelincidencia.provincia" />
+          <EntitySet Name="canton" EntityType="Modelincidencia.canton" />
+          <EntitySet Name="distrito" EntityType="Modelincidencia.distrito" />
+          <AssociationSet Name="provincia_id" Association="Modelincidencia.provincia_id">
+            <End Role="provincia" EntitySet="provincia" />
+            <End Role="canton" EntitySet="canton" />
+          </AssociationSet>
+          <AssociationSet Name="cantondistrito" Association="Modelincidencia.cantondistrito">
+            <End Role="canton" EntitySet="canton" />
+            <End Role="distrito" EntitySet="distrito" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="usuario">
@@ -72,6 +126,7 @@
           <Property Name="contrasena" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="direccion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="codigo_activacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="estado_habilitado">
           <Key>
@@ -93,6 +148,57 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="provincia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_provincia" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="canton" Relationship="Modelincidencia.provincia_id" FromRole="provincia" ToRole="canton" />
+        </EntityType>
+        <EntityType Name="canton">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_canton" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="provincia" Relationship="Modelincidencia.provincia_id" FromRole="canton" ToRole="provincia" />
+          <Property Name="provinciaId" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="distrito" Relationship="Modelincidencia.cantondistrito" FromRole="canton" ToRole="distrito" />
+        </EntityType>
+        <EntityType Name="distrito">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_distrito" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="canton" Relationship="Modelincidencia.cantondistrito" FromRole="distrito" ToRole="canton" />
+          <Property Name="cantonId" Type="Int16" Nullable="false" />
+        </EntityType>
+        <Association Name="provincia_id">
+          <End Type="Modelincidencia.provincia" Role="provincia" Multiplicity="1" />
+          <End Type="Modelincidencia.canton" Role="canton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="provincia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="canton">
+              <PropertyRef Name="provinciaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cantondistrito">
+          <End Type="Modelincidencia.canton" Role="canton" Multiplicity="1" />
+          <End Type="Modelincidencia.distrito" Role="distrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="canton">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="distrito">
+              <PropertyRef Name="cantonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -102,8 +208,7 @@
     <EntitySetMapping Name="usuario">
       <EntityTypeMapping TypeName="IsTypeOf(Modelincidencia.usuario)">
         <MappingFragment StoreEntitySet="usuario">
-          <ScalarProperty Name="codigo_activacion" ColumnName="codigo_activacion" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="Id_usuario" ColumnName="Id_usuario" />
           <ScalarProperty Name="habilitado_id" ColumnName="habilitado_id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -111,6 +216,8 @@
           <ScalarProperty Name="segundo_apellido" ColumnName="segundo_apellido" />
           <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
           <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="codigo_activacion" ColumnName="codigo_activacion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -119,6 +226,32 @@
         <MappingFragment StoreEntitySet="habilitado">
           <ScalarProperty Name="Id_habilitado" ColumnName="Id_habilitado" />
           <ScalarProperty Name="habilitar" ColumnName="habilitar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="provincia">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelincidencia.provincia)">
+        <MappingFragment StoreEntitySet="provincia">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nombre_provincia" ColumnName="nombre_provincia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="canton">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelincidencia.canton)">
+        <MappingFragment StoreEntitySet="canton">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nombre_canton" ColumnName="nombre_canton" />
+          <ScalarProperty Name="provinciaId" ColumnName="provinciaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="distrito">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelincidencia.distrito)">
+        <MappingFragment StoreEntitySet="distrito">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nombre_distrito" ColumnName="nombre_distrito" />
+          <ScalarProperty Name="cantonId" ColumnName="cantonId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

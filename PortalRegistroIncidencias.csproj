@@ -200,8 +200,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\usuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\canton.cs">
+      <DependentUpon>Modelincidencia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\distrito.cs">
+      <DependentUpon>Modelincidencia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\estado_habilitado.cs">
       <DependentUpon>Modelincidencia.tt</DependentUpon>
@@ -220,6 +227,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Modelincidencia.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\provincia.cs">
+      <DependentUpon>Modelincidencia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usuario.cs">
       <DependentUpon>Modelincidencia.tt</DependentUpon>
@@ -286,9 +296,13 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Usuarios\RegistroDeUsuarios.cshtml" />
     <Content Include="Views\Incidencias\RegistroDeIncidencias.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\usuarios\Create.cshtml" />
+    <Content Include="Views\usuarios\Delete.cshtml" />
+    <Content Include="Views\usuarios\Details.cshtml" />
+    <Content Include="Views\usuarios\Edit.cshtml" />
+    <Content Include="Views\usuarios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

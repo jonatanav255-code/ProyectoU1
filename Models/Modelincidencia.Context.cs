@@ -27,5 +27,8 @@ namespace PortalRegistroIncidencias.Models
     
         public virtual DbSet<usuario> usuario { get; set; }
         public virtual DbSet<estado_habilitado> habilitado { get; set; }
+        public virtual DbSet<provincia> provincia { get; set; }
+        public virtual DbSet<canton> canton { get; set; }
+        public virtual DbSet<distrito> distrito { get; set; }
     }
 }

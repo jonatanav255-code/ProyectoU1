@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Modelincidencia" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="ModelincidenciaContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="usuario" EntityType="Modelincidencia.usuario" />
+    <EntitySet Name="habilitado" EntityType="Modelincidencia.estado_habilitado" />
+    <AssociationSet Name="habilitadousuario" Association="Modelincidencia.habilitadousuario">
+      <End Role="habilitado" EntitySet="habilitado" />
+      <End Role="usuario" EntitySet="usuario" />
+    </AssociationSet>
+    <EntitySet Name="provincia" EntityType="Modelincidencia.provincia" />
+    <EntitySet Name="canton" EntityType="Modelincidencia.canton" />
+    <EntitySet Name="distrito" EntityType="Modelincidencia.distrito" />
+    <AssociationSet Name="provincia_id" Association="Modelincidencia.provincia_id">
+      <End Role="provincia" EntitySet="provincia" />
+      <End Role="canton" EntitySet="canton" />
+    </AssociationSet>
+    <AssociationSet Name="cantondistrito" Association="Modelincidencia.cantondistrito">
+      <End Role="canton" EntitySet="canton" />
+      <End Role="distrito" EntitySet="distrito" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="Id_usuario" />
+    </Key>
+    <Property Name="Id_usuario" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="habilitado" Relationship="Modelincidencia.habilitadousuario" FromRole="usuario" ToRole="habilitado" />
+    <Property Name="habilitado_id" Type="Int16" Nullable="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="primer_apellido" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="segundo_apellido" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="correo_electronico" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="contrasena" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="direccion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="codigo_activacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="estado_habilitado">
+    <Key>
+      <PropertyRef Name="Id_habilitado" />
+    </Key>
+    <Property Name="Id_habilitado" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="habilitar" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="usuario" Relationship="Modelincidencia.habilitadousuario" FromRole="habilitado" ToRole="usuario" />
+  </EntityType>
+  <Association Name="habilitadousuario">
+    <End Type="Modelincidencia.estado_habilitado" Role="habilitado" Multiplicity="1" />
+    <End Type="Modelincidencia.usuario" Role="usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="habilitado">
+        <PropertyRef Name="Id_habilitado" />
+      </Principal>
+      <Dependent Role="usuario">
+        <PropertyRef Name="habilitado_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="provincia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_provincia" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="canton" Relationship="Modelincidencia.provincia_id" FromRole="provincia" ToRole="canton" />
+  </EntityType>
+  <EntityType Name="canton">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_canton" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="provincia" Relationship="Modelincidencia.provincia_id" FromRole="canton" ToRole="provincia" />
+    <Property Name="provinciaId" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="distrito" Relationship="Modelincidencia.cantondistrito" FromRole="canton" ToRole="distrito" />
+  </EntityType>
+  <EntityType Name="distrito">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_distrito" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="canton" Relationship="Modelincidencia.cantondistrito" FromRole="distrito" ToRole="canton" />
+    <Property Name="cantonId" Type="Int16" Nullable="false" />
+  </EntityType>
+  <Association Name="provincia_id">
+    <End Type="Modelincidencia.provincia" Role="provincia" Multiplicity="1" />
+    <End Type="Modelincidencia.canton" Role="canton" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="provincia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="canton">
+        <PropertyRef Name="provinciaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="cantondistrito">
+    <End Type="Modelincidencia.canton" Role="canton" Multiplicity="1" />
+    <End Type="Modelincidencia.distrito" Role="distrito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="canton">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="distrito">
+        <PropertyRef Name="cantonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -22,5 +22,6 @@ namespace PortalRegistroIncidencias.Controllers
         {
             return View("~/Views/Incidencias/RegistroDeIncidencias.cshtml");
         }
+     
     }
 }

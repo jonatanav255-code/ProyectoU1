@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Modelincidencia.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="canton">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_canton" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="provinciaId" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="distrito">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_distrito" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="cantonId" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="habilitado">
+    <Key>
+      <PropertyRef Name="Id_habilitado" />
+    </Key>
+    <Property Name="Id_habilitado" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="habilitar" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="provincia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_provincia" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="Id_usuario" />
+    </Key>
+    <Property Name="Id_usuario" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="habilitado_id" Type="smallint" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="primer_apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="segundo_apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="correo_electronico" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="contrasena" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="direccion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="codigo_activacion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK_cantondistrito">
+    <End Role="canton" Type="Self.canton" Multiplicity="1" />
+    <End Role="distrito" Type="Self.distrito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="canton">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="distrito">
+        <PropertyRef Name="cantonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_provincia_id">
+    <End Role="provincia" Type="Self.provincia" Multiplicity="1" />
+    <End Role="canton" Type="Self.canton" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="provincia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="canton">
+        <PropertyRef Name="provinciaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelincidenciaStoreContainer">
+    <EntitySet Name="canton" EntityType="Self.canton" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="distrito" EntityType="Self.distrito" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="habilitado" EntityType="Self.habilitado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="provincia" EntityType="Self.provincia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_cantondistrito" Association="Self.FK_cantondistrito">
+      <End Role="canton" EntitySet="canton" />
+      <End Role="distrito" EntitySet="distrito" />
+    </AssociationSet>
+    <AssociationSet Name="FK_provincia_id" Association="Self.FK_provincia_id">
+      <End Role="provincia" EntitySet="provincia" />
+      <End Role="canton" EntitySet="canton" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,109 +1,93 @@
-﻿
+﻿@model PortalRegistroIncidencias.Models.Incidencias
 @{
     ViewBag.Title = "RegistroDeIncidencias";
 }
-<link href="~/Content/configuracionFormularios.css" rel="stylesheet" />
+
+    <h2>Registro de Incidencias</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
 <script>
     function myFunction() {
-      var x = document.createElement("INPUT");
-      x.setAttribute("type", "file");
-      document.body.appendChild(x);
+        var x = document.createElement("INPUT");
+        x.setAttribute("type", "file");
+        document.body.appendChild(x);
     }
 </script>
 
-<h2>Registro de incidencias</h2>
+<div class="form-horizontal">
+    <h4>Crear Incidencias</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-<br />
-<br />
 
-<br />
-<div class="EnLinea">
-    <div class="EnLinea">
-        <div>C&eacute;dula:&nbsp;</div>
-        <div><input type="text" id="txtCedulaUsuario" disabled="disabled" /></div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Tipo_Incidencia_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Tipo_Incidencia_Id, new { htmlAttribute = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Tipo_Incidencia_Id, "", new { @class = "text-danger" })
+        </div>
     </div>
 
-    <div class="EnLinea">
-        <div>Nombre:&nbsp;</div>
-        <div><input type="text" id="txtNombreUsuario" disabled="disabled" /></div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Empresa_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Empresa_Id, new { htmlAttribute = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Empresa_Id, "", new { @class = "text-danger" })
+        </div>
     </div>
 
-    <div class="EnLinea">
-        <div>Primer Apellido:&nbsp;</div>
-        <div><input type="text" id="txtPrimerApellido" disabled="disabled" /></div>
-    </div>
-    <div class="EnLinea">
-        <div>Segundo Apellido:&nbsp;</div>
-        <div><input type="text" id="txtSegundoApellido" disabled="disabled" /></div>
-    </div>
-</div>
-<br />
-<br />
-<div>
-    <div class="EnLinea">
-        <div>Categoria:&nbsp;</div>
-        <div><input type="" id="txtSegundoApellido" /></div>
-    </div>
-    <div class="EnLinea">
-        <div>Empresa:&nbsp;</div>
-        <div><input type="text" id="txtCanton" /></div>
-    </div>
-</div>
-<br />
-<div>
-
-    <div class="EnLinea">
-        <div>Provincia:&nbsp;</div>
-        <div><input type="text" id="txtProvincia" /></div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Provincia_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Provincia_Id, new { htmlAttribute = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Provincia_Id, "", new { @class = "text-danger" })
+        </div>
     </div>
 
-    <div class="EnLinea">
-        <div>Cant&oacute;n:&nbsp;</div>
-        <div><input type="text" id="txtCanton" /></div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Canton_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Canton_Id, new { htmlAttribute = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Canton_Id, "", new { @class = "text-danger" })
+        </div>
     </div>
 
-    <div class="EnLinea">
-        <div>Distrito:&nbsp;</div>
-        <div><input type="text" id="txtDistrito" /></div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Distrito_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Distrito_Id, new { htmlAttribute = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Distrito_Id, "", new { @class = "text-danger" })
+        </div>
     </div>
 
-    <div class="EnLinea">
-        <div>Direcci&oacute;n exacta:&nbsp;</div>
-        <div><input type="text" id="txtDireccion" /></div>
-    </div>
-</div>
-
-<br />
-
-<div>
-
-    <div class="EnLinea">
-        <div>Geo Referencia:&nbsp;</div>
-        <div><input type="text" id="txtGeoReferencia" /></div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fotografia_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="button" id="btnCargar" onclick="myFunction()" value="Cargar Fotografía" />
+            @Html.ValidationMessageFor(model => model.Fotografia_Id, "", new { @class = "text-danger" })
+        </div>
     </div>
 
-    <div class="EnLinea">
-        <div>Detalle incidente:&nbsp;</div>
-        <div><input type="text" id="txtDetalle" multiline="true" /></div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Detalle, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Detalle, new { htmlAttribute = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Detalle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Crear" class="btn btn-default"/>
+        </div>
     </div>
 </div>
-
-<br />
-
-<div>
-    <div class="EnLinea">
-        <div>Fotograf&iacute;a:&nbsp;</div>
-        <div><input type="button" id="btnCargar" onclick="myFunction()" value="Cargar Fotografía" /></div>
-    </div>
-</div>
-
-<br /><br />
+}
 
 <div>
-    <div>
-        <input type="button" value="Aceptar" id="btnAceptar"/>
-    
-        <input type="button" value="Cancelar" id="btnCancelar" />
-    </div>
+    @Html.ActionLink("Back to List", "Index")
 </div>

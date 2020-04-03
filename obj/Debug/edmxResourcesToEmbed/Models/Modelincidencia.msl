@@ -4,6 +4,7 @@
     <EntitySetMapping Name="usuario">
       <EntityTypeMapping TypeName="IsTypeOf(Modelincidencia.usuario)">
         <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
           <ScalarProperty Name="telefono" ColumnName="telefono" />
           <ScalarProperty Name="Id_usuario" ColumnName="Id_usuario" />
           <ScalarProperty Name="habilitado_id" ColumnName="habilitado_id" />

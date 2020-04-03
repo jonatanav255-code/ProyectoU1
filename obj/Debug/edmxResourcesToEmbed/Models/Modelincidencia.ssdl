@@ -43,7 +43,8 @@
     <Property Name="contrasena" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="direccion" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="codigo_activacion" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="telefono" Type="varchar" MaxLength="10" />
+    <Property Name="telefono" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Cedula" Type="nchar" MaxLength="25" Nullable="false" />
   </EntityType>
   <Association Name="FK_cantondistrito">
     <End Role="canton" Type="Self.canton" Multiplicity="1" />

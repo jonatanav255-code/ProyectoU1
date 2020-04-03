@@ -211,3 +211,9 @@ C:\Users\Jonatan\Documents\GitHub\RegistroIncidencias1\bin\System.Memory.xml
 C:\Users\Jonatan\Documents\GitHub\RegistroIncidencias1\bin\System.Numerics.Vectors.xml
 C:\Users\Jonatan\Documents\GitHub\RegistroIncidencias1\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Jonatan\Documents\GitHub\RegistroIncidencias1\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\Jonatan\Documents\GitHub\RegistroIncidencias1\bin\BouncyCastle.Crypto.dll
+C:\Users\Jonatan\Documents\GitHub\RegistroIncidencias1\bin\MailKit.dll
+C:\Users\Jonatan\Documents\GitHub\RegistroIncidencias1\bin\MimeKit.dll
+C:\Users\Jonatan\Documents\GitHub\RegistroIncidencias1\bin\BouncyCastle.Crypto.xml
+C:\Users\Jonatan\Documents\GitHub\RegistroIncidencias1\bin\MailKit.xml
+C:\Users\Jonatan\Documents\GitHub\RegistroIncidencias1\bin\MimeKit.xml

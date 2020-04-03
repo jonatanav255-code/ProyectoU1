@@ -48,7 +48,8 @@
           <Property Name="contrasena" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="direccion" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="codigo_activacion" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="telefono" Type="varchar" MaxLength="10" />
+          <Property Name="telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Cedula" Type="nchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <Association Name="FK_cantondistrito">
           <End Role="canton" Type="Self.canton" Multiplicity="1" />
@@ -126,7 +127,8 @@
           <Property Name="contrasena" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="direccion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="codigo_activacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cedula" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="estado_habilitado">
           <Key>
@@ -208,7 +210,8 @@
     <EntitySetMapping Name="usuario">
       <EntityTypeMapping TypeName="IsTypeOf(Modelincidencia.usuario)">
         <MappingFragment StoreEntitySet="usuario">
-          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="Id_usuario" ColumnName="Id_usuario" />
           <ScalarProperty Name="habilitado_id" ColumnName="habilitado_id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />

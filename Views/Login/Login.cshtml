@@ -1,57 +1,58 @@
-﻿@{
+﻿@model  PortalRegistroIncidencias.Models.usuario
+@{
+    
     ViewBag.Title = "Login";
 }
 
-<!--
-<button type="button" id="btnLogin" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    Launch demo modal
-</button>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Iniciar Sesion</h4>
-            </div>
-            <div class="modal-body">
 
+    @using (Html.BeginForm("Autorize", "Login", FormMethod.Post))
+    {
+        <div class="row" style="margin-top:40px">
+            <div class="col-md-6 col-md-offset-3 mb-4" >
+                <h4 class="" style="margin-bottom:30px"  >Inicia Sesion</h4>
+                <form>
+                    
+                    <div class="form-group ">
+                         <label for="email ">Correo Electrónico:</label>
+    <!--  <input type="email" class="form-control" id="email"> -->
+                         <div class="">
+                             
+                             @Html.EditorFor(Model => Model.correo_electronico, "",new { htmltAttributes = new { @class = "" } })
+
+                           
+                             </div>
+                         </div>
+                    <div class="">
+                    <label for="pwd ">Contraseña:</label>
+    <!-- <input type="password" class="form-control" id="pwd">
+                        -->
+                             <div class="glyphicon-music" style="">
+                                 @Html.EditorFor(Model => Model.contrasena)
+                             </div>
+                         </div>
+    <!--
+    <div class="alert alert-danger">
+        <p>El login esta malo</p>
+    </div>-->
+
+
+                        <div class="row">
+                            <div class="col-xs-5 col-md-4">
+                                <button type="submit" class="btn btn-default w-100 mb-2" value="Autorize">Iniciar Sesion</button>
+                            </div>
+                            <div class="col-xs-5 col-md-4">
+                                <button type="button" asp-page="RegistroDeIncidencias" class="btn btn-primary w-100" value="Login">Registrarme</button>
+                            </div>
+
+                        </div>
+</form>
             </div>
         </div>
-    </div>
-</div>-->
 
-<div class="row" style="margin-top:40px">
-    <div class="col-md-6 col-md-offset-3">
-        <h4 class="text-center">Bienvenido</h4>
-        <form>
-            <div class="form-group">
-                <label for="email">Correo Electrónico:</label>
-                <input type="email" class="form-control" id="email">
-            </div>
-            <div class="form-group">
-                <label for="pwd">Contraseña:</label>
-                <input type="password" class="form-control" id="pwd">
-            </div>
-            <!--
-            <div class="alert alert-danger">
-                <p>El login esta malo</p>
-            </div>-->
+    }
 
-
-            <div class="row"> 
-                <div class="col-xs-5 col-md-4">
-                    <button type="submit" class="btn btn-default w-100 mb-2">Iniciar Sesion</button>
-                </div>
-                <div class="col-xs-5 col-md-4" > 
-                    <button type="button" asp-page="RegistroDeIncidencias" class="btn btn-primary w-100">Registrarme</button>
-                </div>
-                
-            </div>
-        </form>
-    </div>
-</div>
-<!--    
+<!--
 @Scripts.Render("~/bundles/jquery")
 
 <script type="text/javascript">

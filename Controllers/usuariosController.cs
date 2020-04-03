@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MailKit.Net.Smtp;
+using MimeKit;
 using PortalRegistroIncidencias.Models;
 
 namespace PortalRegistroIncidencias.Controllers
@@ -40,7 +42,7 @@ namespace PortalRegistroIncidencias.Controllers
         public ActionResult Create()
         {
            // ViewBag.habilitado_id = new SelectList(db.habilitado, "Id_habilitado", "habilitar");
-            return View();
+            return View("~/Views/usuarios/Create.cshtml");
         }
 
         // POST: usuarios/Create
@@ -48,20 +50,42 @@ namespace PortalRegistroIncidencias.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id_usuario,habilitado_id,nombre,primer_apellido,segundo_apellido,correo_electronico,contrasena,direccion,codigo_activacion,telefono")] usuario usuario)
+        public ActionResult Create([Bind(Include = "Id_usuario,habilitado_id,nombre,primer_apellido,segundo_apellido,correo_electronico,contrasena,direccion,codigo_activacion,telefono,Cedula")] usuario usuario)
         {
             usuario.habilitado_id = 2;
-            
-             Random re = new Random();
+            usuario.Cedula = "pruebas";
+
+            Random re = new Random();
             usuario.codigo_activacion = re.Next().ToString();
-           
+            
             
             
             if (ModelState.IsValid)
             {
                 db.usuario.Add(usuario);
                 db.SaveChanges();
+
+                var message = new MimeMessage();
+                message.From.Add(new MailboxAddress("prueba", "jonatanav2555@gmail.com"));
+                message.To.Add(new MailboxAddress("prueba", "jonatanav255@hotmail.com"));
+                message.Subject = "Test de correo electronico";
+                message.Body = new TextPart("plain")
+                {
+                    Text = usuario.codigo_activacion
+                };
+                using (var client = new SmtpClient())
+                {
+                    client.Connect("smtp.gmail.com", 587, false);
+
+                    client.Authenticate("jonatanav2555@gmail.com", "moneda@123");
+
+
+                    client.Send(message);
+                    client.Disconnect(true);
+
+                }
                 return RedirectToAction("Index");
+                
             }
 
            // ViewBag.habilitado_id = new SelectList(db.habilitado, "Id_habilitado", "habilitar", usuario.habilitado_id);

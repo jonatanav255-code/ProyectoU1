@@ -17,20 +17,26 @@ namespace PortalRegistroIncidencias.Models
     {
         public short Id_usuario { get; set; }
         public short habilitado_id { get; set; }
-        [Required]
         
         public string nombre { get; set; }
+        
         public string primer_apellido { get; set; }
+        
         public string segundo_apellido { get; set; }
+        
+
         public string correo_electronico { get; set; }
+        
         public string contrasena { get; set; }
+        
         public string direccion { get; set; }
+        
         public string codigo_activacion { get; set; }
-        [StringLength(8, MinimumLength = 8)]
-        [Required]
-        [Display(Prompt = "exceso de numeros")]
+        
         public string telefono { get; set; }
-    
+        public string Cedula { get; set; }
+
+
         public virtual estado_habilitado habilitado { get; set; }
     }
 }

@@ -71,18 +71,36 @@
             @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
         </div>
     </div>
-    
-       
+    <div class="form-group">
+        @Html.LabelFor(model => model.direccion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Sortby",
+                          new SelectListItem[]
+                          {
+                              new SelectListItem() { Text = "Newest to Oldest", Value = "0" },
+                              new SelectListItem() { Text = "Oldest to Newest", Value = "1" }})
 
-
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+            <!--
+           <select class="form-group-lg" id="StudentGender" name="StudentGender">
+        <option>Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+    </select>
+    -->
         </div>
     </div>
+
+
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
             }
 
             <div>

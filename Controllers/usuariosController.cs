@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using MailKit.Net.Smtp;
@@ -22,7 +24,52 @@ namespace PortalRegistroIncidencias.Controllers
             var usuario = db.usuario.Include(u => u.habilitado);
             return View(usuario.ToList());
         }
+        public  ActionResult lugares() {
+            /*
 
+            string apiUrl = "http://localhost:58764/api/values";
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(apiUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = await response.Content.ReadAsStringAsync();
+                    var table = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Data.DataTable>(data);
+
+                }
+            }*/
+
+                return View();
+            /*
+            IEnumerable<provincia> customer = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://ubicaciones.paginasweb.cr/provincias.json");
+                var respondeTask = client.GetAsync("customer");
+                respondeTask.Wait();
+
+                var result = respondeTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readJob = result.Content.ReadAsAsync<IList<provincia>>();
+                    readJob.Wait();
+                    customer = readJob.Result;
+                }
+                else
+                {
+                    customer = Enumerable.Empty<provincia>();
+                    ModelState.AddModelError(string.Empty, "error ocurred. Please Contact");
+                }
+            }
+            */
+
+          
+        }
         // GET: usuarios/Details/5
         public ActionResult Details(short? id)
         {

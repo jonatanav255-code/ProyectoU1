@@ -217,3 +217,5 @@ C:\Users\Jonatan\Documents\GitHub\RegistroIncidencias1\bin\MimeKit.dll
 C:\Users\Jonatan\Documents\GitHub\RegistroIncidencias1\bin\BouncyCastle.Crypto.xml
 C:\Users\Jonatan\Documents\GitHub\RegistroIncidencias1\bin\MailKit.xml
 C:\Users\Jonatan\Documents\GitHub\RegistroIncidencias1\bin\MimeKit.xml
+C:\Users\Jonatan\Documents\GitHub\RegistroIncidencias1\bin\System.Net.Http.Formatting.dll
+C:\Users\Jonatan\Documents\GitHub\RegistroIncidencias1\bin\System.Net.Http.Formatting.xml

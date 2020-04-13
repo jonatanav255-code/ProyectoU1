@@ -35,9 +35,7 @@
         <th>
             @Html.DisplayNameFor(model => model.habilitado.habilitar)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cedula)
-        </th>
+    
         <th></th>
     </tr>
 
@@ -67,9 +65,7 @@
     <td>
         @Html.DisplayFor(modelItem => item.habilitado.habilitar)
     </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Cedula)
-    </td>
+    
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.Id_usuario }) |
         @Html.ActionLink("Details", "Details", new { id = item.Id_usuario }) |

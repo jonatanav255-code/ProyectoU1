@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="prueba1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="canton">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_canton" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="provinciaId" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="id_perro" />
+          </Key>
+          <Property Name="id_perro" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="distrito">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_distrito" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="cantonId" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="habilitado">
+          <Key>
+            <PropertyRef Name="Id_habilitado" />
+          </Key>
+          <Property Name="Id_habilitado" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="habilitar" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="provincia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_provincia" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="Id_usuario" />
+          </Key>
+          <Property Name="Id_usuario" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="habilitado_id" Type="smallint" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="primer_apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="segundo_apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="correo_electronico" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="contrasena" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="direccion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="codigo_activacion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_cantondistrito">
+          <End Role="canton" Type="Self.canton" Multiplicity="1" />
+          <End Role="distrito" Type="Self.distrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="canton">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="distrito">
+              <PropertyRef Name="cantonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_habilitadousuario">
+          <End Role="habilitado" Type="Self.habilitado" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habilitado">
+              <PropertyRef Name="Id_habilitado" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="habilitado_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_provincia_id">
+          <End Role="provincia" Type="Self.provincia" Multiplicity="1" />
+          <End Role="canton" Type="Self.canton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="provincia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="canton">
+              <PropertyRef Name="provinciaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="prueba1ModelStoreContainer">
+          <EntitySet Name="canton" EntityType="Self.canton" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="distrito" EntityType="Self.distrito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="habilitado" EntityType="Self.habilitado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="provincia" EntityType="Self.provincia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_cantondistrito" Association="Self.FK_cantondistrito">
+            <End Role="canton" EntitySet="canton" />
+            <End Role="distrito" EntitySet="distrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_habilitadousuario" Association="Self.FK_habilitadousuario">
+            <End Role="habilitado" EntitySet="habilitado" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_provincia_id" Association="Self.FK_provincia_id">
+            <End Role="provincia" EntitySet="provincia" />
+            <End Role="canton" EntitySet="canton" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="prueba1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="canton">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_canton" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="provinciaId" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="distrito" Relationship="Self.FK_cantondistrito" FromRole="canton" ToRole="distrito" />
+          <NavigationProperty Name="provincia" Relationship="Self.FK_provincia_id" FromRole="canton" ToRole="provincia" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="id_perro" />
+          </Key>
+          <Property Name="id_perro" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="distrito">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_distrito" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cantonId" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="canton" Relationship="Self.FK_cantondistrito" FromRole="distrito" ToRole="canton" />
+        </EntityType>
+        <EntityType Name="habilitado">
+          <Key>
+            <PropertyRef Name="Id_habilitado" />
+          </Key>
+          <Property Name="Id_habilitado" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="habilitar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_habilitadousuario" FromRole="habilitado" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="provincia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_provincia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="canton" Relationship="Self.FK_provincia_id" FromRole="provincia" ToRole="canton" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="Id_usuario" />
+          </Key>
+          <Property Name="Id_usuario" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="habilitado_id" Type="Int16" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="primer_apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="segundo_apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="correo_electronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="codigo_activacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="habilitado" Relationship="Self.FK_habilitadousuario" FromRole="usuario" ToRole="habilitado" />
+        </EntityType>
+        <Association Name="FK_cantondistrito">
+          <End Role="canton" Type="Self.canton" Multiplicity="1" />
+          <End Role="distrito" Type="Self.distrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="canton">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="distrito">
+              <PropertyRef Name="cantonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_provincia_id">
+          <End Role="provincia" Type="Self.provincia" Multiplicity="1" />
+          <End Role="canton" Type="Self.canton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="provincia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="canton">
+              <PropertyRef Name="provinciaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_habilitadousuario">
+          <End Role="habilitado" Type="Self.habilitado" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habilitado">
+              <PropertyRef Name="Id_habilitado" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="habilitado_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="prueba1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="canton" EntityType="Self.canton" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" />
+          <EntitySet Name="distrito" EntityType="Self.distrito" />
+          <EntitySet Name="habilitado" EntityType="Self.habilitado" />
+          <EntitySet Name="provincia" EntityType="Self.provincia" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="FK_cantondistrito" Association="Self.FK_cantondistrito">
+            <End Role="canton" EntitySet="canton" />
+            <End Role="distrito" EntitySet="distrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_provincia_id" Association="Self.FK_provincia_id">
+            <End Role="provincia" EntitySet="provincia" />
+            <End Role="canton" EntitySet="canton" />
+          </AssociationSet>
+          <AssociationSet Name="FK_habilitadousuario" Association="Self.FK_habilitadousuario">
+            <End Role="habilitado" EntitySet="habilitado" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="prueba1ModelStoreContainer" CdmEntityContainer="prueba1Entities">
+          <EntitySetMapping Name="canton">
+            <EntityTypeMapping TypeName="prueba1Model.canton">
+              <MappingFragment StoreEntitySet="canton">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nombre_canton" ColumnName="nombre_canton" />
+                <ScalarProperty Name="provinciaId" ColumnName="provinciaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cliente">
+            <EntityTypeMapping TypeName="prueba1Model.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="id_perro" ColumnName="id_perro" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="distrito">
+            <EntityTypeMapping TypeName="prueba1Model.distrito">
+              <MappingFragment StoreEntitySet="distrito">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nombre_distrito" ColumnName="nombre_distrito" />
+                <ScalarProperty Name="cantonId" ColumnName="cantonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="habilitado">
+            <EntityTypeMapping TypeName="prueba1Model.habilitado">
+              <MappingFragment StoreEntitySet="habilitado">
+                <ScalarProperty Name="Id_habilitado" ColumnName="Id_habilitado" />
+                <ScalarProperty Name="habilitar" ColumnName="habilitar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="provincia">
+            <EntityTypeMapping TypeName="prueba1Model.provincia">
+              <MappingFragment StoreEntitySet="provincia">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="nombre_provincia" ColumnName="nombre_provincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="prueba1Model.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="Id_usuario" ColumnName="Id_usuario" />
+                <ScalarProperty Name="habilitado_id" ColumnName="habilitado_id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="primer_apellido" ColumnName="primer_apellido" />
+                <ScalarProperty Name="segundo_apellido" ColumnName="segundo_apellido" />
+                <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="codigo_activacion" ColumnName="codigo_activacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

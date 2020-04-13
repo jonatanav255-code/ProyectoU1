@@ -13,10 +13,10 @@ namespace PortalRegistroIncidencias.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ModelincidenciaContainer : DbContext
+    public partial class prueba1Entities : DbContext
     {
-        public ModelincidenciaContainer()
-            : base("name=ModelincidenciaContainer")
+        public prueba1Entities()
+            : base("name=prueba1Entities")
         {
         }
     
@@ -25,10 +25,11 @@ namespace PortalRegistroIncidencias.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<usuario> usuario { get; set; }
-        public virtual DbSet<estado_habilitado> habilitado { get; set; }
-        public virtual DbSet<provincia> provincia { get; set; }
         public virtual DbSet<canton> canton { get; set; }
+        public virtual DbSet<cliente> cliente { get; set; }
         public virtual DbSet<distrito> distrito { get; set; }
+        public virtual DbSet<habilitado> habilitado { get; set; }
+        public virtual DbSet<provincia> provincia { get; set; }
+        public virtual DbSet<usuario> usuario { get; set; }
     }
 }

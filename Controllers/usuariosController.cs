@@ -16,7 +16,7 @@ namespace PortalRegistroIncidencias.Controllers
 {
     public class usuariosController : Controller
     {
-        private ModelincidenciaContainer db = new ModelincidenciaContainer();
+        private prueba1Entities db = new prueba1Entities();
 
         // GET: usuarios
         public ActionResult Index()
@@ -97,10 +97,10 @@ namespace PortalRegistroIncidencias.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id_usuario,habilitado_id,nombre,primer_apellido,segundo_apellido,correo_electronico,contrasena,direccion,codigo_activacion,telefono,Cedula")] usuario usuario)
+        public ActionResult Create([Bind(Include = "Id_usuario,habilitado_id,nombre,primer_apellido,segundo_apellido,correo_electronico,contrasena,direccion,codigo_activacion")] usuario usuario)
         {
             usuario.habilitado_id = 2;
-            usuario.Cedula = "pruebas";
+            
 
             Random re = new Random();
             usuario.codigo_activacion = re.Next().ToString();

@@ -14,7 +14,7 @@ namespace PortalRegistroIncidencias.Controllers
     public class LoginController : Controller
     {
         // GET: Login
-        private ModelincidenciaContainer db = new ModelincidenciaContainer();
+        private prueba1Entities db = new  prueba1Entities ();
 
         public ActionResult Index()
         {

@@ -24,8 +24,8 @@ namespace PortalRegistroIncidencias.Models
         public string nombre_canton { get; set; }
         public short provinciaId { get; set; }
     
-        public virtual provincia provincia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<distrito> distrito { get; set; }
+        public virtual provincia provincia { get; set; }
     }
 }

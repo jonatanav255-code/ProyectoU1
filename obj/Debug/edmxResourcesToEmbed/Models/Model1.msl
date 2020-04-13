@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="prueba1ModelStoreContainer" CdmEntityContainer="prueba1Entities">
+    <EntitySetMapping Name="canton">
+      <EntityTypeMapping TypeName="prueba1Model.canton">
+        <MappingFragment StoreEntitySet="canton">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nombre_canton" ColumnName="nombre_canton" />
+          <ScalarProperty Name="provinciaId" ColumnName="provinciaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cliente">
+      <EntityTypeMapping TypeName="prueba1Model.cliente">
+        <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="id_perro" ColumnName="id_perro" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="distrito">
+      <EntityTypeMapping TypeName="prueba1Model.distrito">
+        <MappingFragment StoreEntitySet="distrito">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nombre_distrito" ColumnName="nombre_distrito" />
+          <ScalarProperty Name="cantonId" ColumnName="cantonId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="habilitado">
+      <EntityTypeMapping TypeName="prueba1Model.habilitado">
+        <MappingFragment StoreEntitySet="habilitado">
+          <ScalarProperty Name="Id_habilitado" ColumnName="Id_habilitado" />
+          <ScalarProperty Name="habilitar" ColumnName="habilitar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="provincia">
+      <EntityTypeMapping TypeName="prueba1Model.provincia">
+        <MappingFragment StoreEntitySet="provincia">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nombre_provincia" ColumnName="nombre_provincia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario">
+      <EntityTypeMapping TypeName="prueba1Model.usuario">
+        <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="Id_usuario" ColumnName="Id_usuario" />
+          <ScalarProperty Name="habilitado_id" ColumnName="habilitado_id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="primer_apellido" ColumnName="primer_apellido" />
+          <ScalarProperty Name="segundo_apellido" ColumnName="segundo_apellido" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="codigo_activacion" ColumnName="codigo_activacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

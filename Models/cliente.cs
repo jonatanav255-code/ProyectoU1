@@ -12,18 +12,9 @@ namespace PortalRegistroIncidencias.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class usuario
+    public partial class cliente
     {
-        public short Id_usuario { get; set; }
-        public short habilitado_id { get; set; }
+        public int id_perro { get; set; }
         public string nombre { get; set; }
-        public string primer_apellido { get; set; }
-        public string segundo_apellido { get; set; }
-        public string correo_electronico { get; set; }
-        public string contrasena { get; set; }
-        public string direccion { get; set; }
-        public string codigo_activacion { get; set; }
-    
-        public virtual habilitado habilitado { get; set; }
     }
 }

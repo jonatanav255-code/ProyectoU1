@@ -2,7 +2,7 @@
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="prueba1ModelStoreContainer" CdmEntityContainer="prueba1Entities">
     <EntitySetMapping Name="canton">
-      <EntityTypeMapping TypeName="prueba1Model.canton">
+      <EntityTypeMapping TypeName="IsTypeOf(prueba1Model.canton)">
         <MappingFragment StoreEntitySet="canton">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="nombre_canton" ColumnName="nombre_canton" />
@@ -11,7 +11,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="cliente">
-      <EntityTypeMapping TypeName="prueba1Model.cliente">
+      <EntityTypeMapping TypeName="IsTypeOf(prueba1Model.cliente)">
         <MappingFragment StoreEntitySet="cliente">
           <ScalarProperty Name="id_perro" ColumnName="id_perro" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -19,7 +19,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="distrito">
-      <EntityTypeMapping TypeName="prueba1Model.distrito">
+      <EntityTypeMapping TypeName="IsTypeOf(prueba1Model.distrito)">
         <MappingFragment StoreEntitySet="distrito">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="nombre_distrito" ColumnName="nombre_distrito" />
@@ -28,7 +28,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="habilitado">
-      <EntityTypeMapping TypeName="prueba1Model.habilitado">
+      <EntityTypeMapping TypeName="IsTypeOf(prueba1Model.habilitado)">
         <MappingFragment StoreEntitySet="habilitado">
           <ScalarProperty Name="Id_habilitado" ColumnName="Id_habilitado" />
           <ScalarProperty Name="habilitar" ColumnName="habilitar" />
@@ -36,7 +36,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="provincia">
-      <EntityTypeMapping TypeName="prueba1Model.provincia">
+      <EntityTypeMapping TypeName="IsTypeOf(prueba1Model.provincia)">
         <MappingFragment StoreEntitySet="provincia">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="nombre_provincia" ColumnName="nombre_provincia" />
@@ -44,7 +44,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="usuario">
-      <EntityTypeMapping TypeName="prueba1Model.usuario">
+      <EntityTypeMapping TypeName="IsTypeOf(prueba1Model.usuario)">
         <MappingFragment StoreEntitySet="usuario">
           <ScalarProperty Name="Id_usuario" ColumnName="Id_usuario" />
           <ScalarProperty Name="habilitado_id" ColumnName="habilitado_id" />
@@ -55,6 +55,59 @@
           <ScalarProperty Name="contrasena" ColumnName="contrasena" />
           <ScalarProperty Name="direccion" ColumnName="direccion" />
           <ScalarProperty Name="codigo_activacion" ColumnName="codigo_activacion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+          <ScalarProperty Name="provinciaId" ColumnName="provinciaId" />
+          <ScalarProperty Name="canton_id" ColumnName="canton_id" />
+          <ScalarProperty Name="distrito_Id" ColumnName="distrito_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Incendias">
+      <EntityTypeMapping TypeName="IsTypeOf(prueba1Model.Incidencias)">
+        <MappingFragment StoreEntitySet="Incendias">
+          <ScalarProperty Name="Id_Incidencia" ColumnName="Id_Incidencia" />
+          <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+          <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+          <ScalarProperty Name="Dirrecion" ColumnName="Dirrecion" />
+          <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+          <ScalarProperty Name="Tipo_Incidencia_Id" ColumnName="Tipo_Incidencia_Id" />
+          <ScalarProperty Name="Empresa_Id" ColumnName="Empresa_Id" />
+          <ScalarProperty Name="Fotografia_Id" ColumnName="Fotografia_Id" />
+          <ScalarProperty Name="Estado_Incidencias_Id" ColumnName="Estado_Incidencias_Id" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fotografia">
+      <EntityTypeMapping TypeName="IsTypeOf(prueba1Model.Fotografia)">
+        <MappingFragment StoreEntitySet="Fotografia">
+          <ScalarProperty Name="Id_Fotografia" ColumnName="Id_Fotografia" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empresa">
+      <EntityTypeMapping TypeName="IsTypeOf(prueba1Model.Empresa)">
+        <MappingFragment StoreEntitySet="Empresa">
+          <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+          <ScalarProperty Name="Nombre_Empresa" ColumnName="Nombre_Empresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipo_Incidencia">
+      <EntityTypeMapping TypeName="IsTypeOf(prueba1Model.Tipo_Incidencia)">
+        <MappingFragment StoreEntitySet="Tipo_Incidencia">
+          <ScalarProperty Name="Id_Tipo_Incidencia" ColumnName="Id_Tipo_Incidencia" />
+          <ScalarProperty Name="Nombre_Problematica" ColumnName="Nombre_Problematica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estado_Incidencias">
+      <EntityTypeMapping TypeName="IsTypeOf(prueba1Model.Estado_Incidencias)">
+        <MappingFragment StoreEntitySet="Estado_Incidencias">
+          <ScalarProperty Name="Id_Estado_Incidencia" ColumnName="Id_Estado_Incidencia" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

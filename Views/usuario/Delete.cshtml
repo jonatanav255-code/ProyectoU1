@@ -1,0 +1,128 @@
+﻿@model PortalRegistroIncidencias.Models.usuario
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.primer_apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.primer_apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.segundo_apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.segundo_apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.correo_electronico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correo_electronico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contrasena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contrasena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.codigo_activacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codigo_activacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cedula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.habilitado.habilitar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.habilitado.habilitar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.provincia.nombre_provincia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.provincia.nombre_provincia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.canton.nombre_canton)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.canton.nombre_canton)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.distrito.nombre_distrito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.distrito.nombre_distrito)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

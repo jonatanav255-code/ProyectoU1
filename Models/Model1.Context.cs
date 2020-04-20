@@ -31,5 +31,10 @@ namespace PortalRegistroIncidencias.Models
         public virtual DbSet<habilitado> habilitado { get; set; }
         public virtual DbSet<provincia> provincia { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
+        public virtual DbSet<Incidencias> Incendias { get; set; }
+        public virtual DbSet<Fotografia> Fotografia { get; set; }
+        public virtual DbSet<Empresa> Empresa { get; set; }
+        public virtual DbSet<Tipo_Incidencia> Tipo_Incidencia { get; set; }
+        public virtual DbSet<Estado_Incidencias> Estado_Incidencias { get; set; }
     }
 }

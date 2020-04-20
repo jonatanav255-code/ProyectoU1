@@ -22,6 +22,10 @@ namespace PortalRegistroIncidencias.Controllers
         {
             return View("~/Views/Incidencias/RegistroDeIncidencias.cshtml");
         }
-     
+
+        public ActionResult Contact()
+        {
+            return View("~/Views/Usuarios/RegistroDeUsuarios.cshtml");
+        }
     }
 }

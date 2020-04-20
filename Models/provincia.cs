@@ -18,6 +18,7 @@ namespace PortalRegistroIncidencias.Models
         public provincia()
         {
             this.canton = new HashSet<canton>();
+            this.usuario = new HashSet<usuario>();
         }
     
         public short Id { get; set; }
@@ -25,5 +26,7 @@ namespace PortalRegistroIncidencias.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<canton> canton { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<usuario> usuario { get; set; }
     }
 }

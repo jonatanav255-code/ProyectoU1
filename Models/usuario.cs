@@ -11,19 +11,55 @@ namespace PortalRegistroIncidencias.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class usuario
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public usuario()
+        {
+            this.Incidencias = new HashSet<Incidencias>();
+        }
+    
         public short Id_usuario { get; set; }
         public short habilitado_id { get; set; }
+        [Required(ErrorMessage = "Por favor ingresar un nombre.")]
+        [Display(Name = "Nombre")]
         public string nombre { get; set; }
+        [Required(ErrorMessage = "Por favor ingresar un apellido.")]
+        [Display(Name = "Primer Apellido")]
         public string primer_apellido { get; set; }
+        [Required(ErrorMessage = "Por favor ingresar un  segundo apellido.")]
+        [Display(Name = "Segundo Apellido")]
         public string segundo_apellido { get; set; }
+        [Required(ErrorMessage = "Por favor ingresar un correo valido.")]
+        [RegularExpression(@"^[\w-\._\+%]+@(?:[\w-]+\.)+[\w]{2,6}$",
+            ErrorMessage = "Por favor ingresar un correo valido")]
         public string correo_electronico { get; set; }
+        [Required(ErrorMessage = "Por favor ingresar una contraseña.")]
+        [Display(Name = "Contraseña")]
         public string contrasena { get; set; }
+        [Required(ErrorMessage = "Por favor ingresar una dirección.")]
+        [Display(Name = "Dirección ")]
         public string direccion { get; set; }
         public string codigo_activacion { get; set; }
+        [Required]//(ErrorMessage = "Por favor ingresar un numero correcto.")]
+        [Display(Name = "Telefono")]
+        
+       // [StringLength(8, ErrorMessage = "{0} El numero es invalido  minimo {0} digitos y maximo  {1} digitos.", MinimumLength = 8)]
+        [RegularExpression("^[6-8][0-9]{9}$", ErrorMessage = "Numero de telefono invalido")]
+        public string telefono { get; set; }
+        [Required(ErrorMessage = "Por favor ingresar un numero de cédula valido.")]
+        public string cedula { get; set; }
+        public short provinciaId { get; set; }
+        public short canton_id { get; set; }
+        public int distrito_Id { get; set; }
     
         public virtual habilitado habilitado { get; set; }
+        public virtual provincia provincia { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Incidencias> Incidencias { get; set; }
+        public virtual canton canton { get; set; }
+        public virtual distrito distrito { get; set; }
     }
 }

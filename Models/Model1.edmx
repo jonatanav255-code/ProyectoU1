@@ -4,296 +4,272 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="prueba1Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="prueba1ModelStoreContainer">
-    <EntitySet Name="canton" EntityType="prueba1Model.Store.canton" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="cliente" EntityType="prueba1Model.Store.cliente" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="distrito" EntityType="prueba1Model.Store.distrito" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="habilitado" EntityType="prueba1Model.Store.habilitado" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="provincia" EntityType="prueba1Model.Store.provincia" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="usuario" EntityType="prueba1Model.Store.usuario" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Incendias" EntityType="prueba1Model.Store.Incendias" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Fotografia" EntityType="prueba1Model.Store.Fotografia" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Empresa" EntityType="prueba1Model.Store.Empresa" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Tipo_Incidencia" EntityType="prueba1Model.Store.Tipo_Incidencia" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Estado_Incidencias" EntityType="prueba1Model.Store.Estado_Incidencias" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_cantondistrito" Association="prueba1Model.Store.FK_cantondistrito">
-      <End Role="canton" EntitySet="canton" />
-      <End Role="distrito" EntitySet="distrito" />
-    </AssociationSet>
-    <AssociationSet Name="FK_provincia_id" Association="prueba1Model.Store.FK_provincia_id">
-      <End Role="provincia" EntitySet="provincia" />
-      <End Role="canton" EntitySet="canton" />
-    </AssociationSet>
-    <AssociationSet Name="FK_habilitadousuario" Association="prueba1Model.Store.FK_habilitadousuario">
-      <End Role="habilitado" EntitySet="habilitado" />
-      <End Role="usuario" EntitySet="usuario" />
-    </AssociationSet>
-    <AssociationSet Name="provinciausuario" Association="prueba1Model.Store.provinciausuario">
-      <End Role="provincia" EntitySet="provincia" />
-      <End Role="usuario" EntitySet="usuario" />
-    </AssociationSet>
-    <AssociationSet Name="Tipo_IncidenciaIncidencias" Association="prueba1Model.Store.Tipo_IncidenciaIncidencias">
-      <End Role="Tipo_Incidencia" EntitySet="Tipo_Incidencia" />
-      <End Role="Incidencias" EntitySet="Incendias" />
-    </AssociationSet>
-    <AssociationSet Name="Empresa_Id" Association="prueba1Model.Store.Empresa_Id">
-      <End Role="Empresa" EntitySet="Empresa" />
-      <End Role="Incidencias" EntitySet="Incendias" />
-    </AssociationSet>
-    <AssociationSet Name="Fotografia_Id" Association="prueba1Model.Store.Fotografia_Id">
-      <End Role="Fotografia" EntitySet="Fotografia" />
-      <End Role="Incidencias" EntitySet="Incendias" />
-    </AssociationSet>
-    <AssociationSet Name="Estado_Incidencia_Id" Association="prueba1Model.Store.Estado_Incidencia_Id">
-      <End Role="Estado_Incidencias" EntitySet="Estado_Incidencias" />
-      <End Role="Incidencias" EntitySet="Incendias" />
-    </AssociationSet>
-    <AssociationSet Name="Usuario_Id" Association="prueba1Model.Store.Usuario_Id">
-      <End Role="usuario" EntitySet="usuario" />
-      <End Role="Incidencias" EntitySet="Incendias" />
-    </AssociationSet>
-    <AssociationSet Name="canton_id" Association="prueba1Model.Store.canton_id">
-      <End Role="canton" EntitySet="canton" />
-      <End Role="usuario" EntitySet="usuario" />
-    </AssociationSet>
-    <AssociationSet Name="distrito_id" Association="prueba1Model.Store.distrito_id">
-      <End Role="distrito" EntitySet="distrito" />
-      <End Role="usuario" EntitySet="usuario" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="canton">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre_canton" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="provinciaId" Type="smallint" Nullable="false" />
-  </EntityType>
-  <EntityType Name="cliente">
-    <Key>
-      <PropertyRef Name="id_perro" />
-    </Key>
-    <Property Name="id_perro" Type="int" Nullable="false" />
-    <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="25" />
-  </EntityType>
-  <EntityType Name="distrito">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre_distrito" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="cantonId" Type="smallint" Nullable="false" />
-  </EntityType>
-  <EntityType Name="habilitado">
-    <Key>
-      <PropertyRef Name="Id_habilitado" />
-    </Key>
-    <Property Name="Id_habilitado" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="habilitar" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="provincia">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre_provincia" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="usuario">
-    <Key>
-      <PropertyRef Name="Id_usuario" />
-    </Key>
-    <Property Name="Id_usuario" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="habilitado_id" Type="smallint" Nullable="false" />
-    <Property Name="nombre" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="primer_apellido" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="segundo_apellido" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="correo_electronico" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="contrasena" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="direccion" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="codigo_activacion" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="telefono" Type="nvarchar" Nullable="false" MaxLength="20" />
-    <Property Name="cedula" Type="nvarchar" Nullable="false" MaxLength="20" />
-    <Property Name="provinciaId" Type="smallint" Nullable="false" />
-    <Property Name="canton_id" Type="smallint" Nullable="false" />
-    <Property Name="distrito_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Incendias">
-    <Key>
-      <PropertyRef Name="Id_Incidencia" />
-    </Key>
-    <Property Name="Id_Incidencia" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Latitud" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Longitud" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Dirrecion" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Detalle" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Tipo_Incidencia_Id" Type="smallint" Nullable="false" />
-    <Property Name="Empresa_Id" Type="smallint" Nullable="false" />
-    <Property Name="Fotografia_Id" Type="smallint" Nullable="false" />
-    <Property Name="Estado_Incidencias_Id" Type="smallint" Nullable="false" />
-    <Property Name="usuario_id" Type="smallint" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Fotografia">
-    <Key>
-      <PropertyRef Name="Id_Fotografia" />
-    </Key>
-    <Property Name="Id_Fotografia" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Foto" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Empresa">
-    <Key>
-      <PropertyRef Name="Id_Empresa" />
-    </Key>
-    <Property Name="Id_Empresa" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre_Empresa" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Tipo_Incidencia">
-    <Key>
-      <PropertyRef Name="Id_Tipo_Incidencia" />
-    </Key>
-    <Property Name="Id_Tipo_Incidencia" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre_Problematica" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Estado_Incidencias">
-    <Key>
-      <PropertyRef Name="Id_Estado_Incidencia" />
-    </Key>
-    <Property Name="Id_Estado_Incidencia" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Estado" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <Association Name="FK_cantondistrito">
-    <End Role="canton" Type="prueba1Model.Store.canton" Multiplicity="1" />
-    <End Role="distrito" Type="prueba1Model.Store.distrito" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="canton">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="distrito">
-        <PropertyRef Name="cantonId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_provincia_id">
-    <End Role="provincia" Type="prueba1Model.Store.provincia" Multiplicity="1" />
-    <End Role="canton" Type="prueba1Model.Store.canton" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="provincia">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="canton">
-        <PropertyRef Name="provinciaId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_habilitadousuario">
-    <End Role="habilitado" Type="prueba1Model.Store.habilitado" Multiplicity="1" />
-    <End Role="usuario" Type="prueba1Model.Store.usuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="habilitado">
-        <PropertyRef Name="Id_habilitado" />
-      </Principal>
-      <Dependent Role="usuario">
-        <PropertyRef Name="habilitado_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="provinciausuario">
-    <End Role="provincia" Type="prueba1Model.Store.provincia" Multiplicity="1" />
-    <End Role="usuario" Type="prueba1Model.Store.usuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="provincia">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="usuario">
-        <PropertyRef Name="provinciaId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Tipo_IncidenciaIncidencias">
-    <End Role="Tipo_Incidencia" Type="prueba1Model.Store.Tipo_Incidencia" Multiplicity="1" />
-    <End Role="Incidencias" Type="prueba1Model.Store.Incendias" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tipo_Incidencia">
-        <PropertyRef Name="Id_Tipo_Incidencia" />
-      </Principal>
-      <Dependent Role="Incidencias">
-        <PropertyRef Name="Tipo_Incidencia_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Empresa_Id">
-    <End Role="Empresa" Type="prueba1Model.Store.Empresa" Multiplicity="1" />
-    <End Role="Incidencias" Type="prueba1Model.Store.Incendias" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Empresa">
-        <PropertyRef Name="Id_Empresa" />
-      </Principal>
-      <Dependent Role="Incidencias">
-        <PropertyRef Name="Empresa_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Fotografia_Id">
-    <End Role="Fotografia" Type="prueba1Model.Store.Fotografia" Multiplicity="1" />
-    <End Role="Incidencias" Type="prueba1Model.Store.Incendias" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Fotografia">
-        <PropertyRef Name="Id_Fotografia" />
-      </Principal>
-      <Dependent Role="Incidencias">
-        <PropertyRef Name="Fotografia_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Estado_Incidencia_Id">
-    <End Role="Estado_Incidencias" Type="prueba1Model.Store.Estado_Incidencias" Multiplicity="1" />
-    <End Role="Incidencias" Type="prueba1Model.Store.Incendias" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Estado_Incidencias">
-        <PropertyRef Name="Id_Estado_Incidencia" />
-      </Principal>
-      <Dependent Role="Incidencias">
-        <PropertyRef Name="Estado_Incidencias_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Usuario_Id">
-    <End Role="usuario" Type="prueba1Model.Store.usuario" Multiplicity="1" />
-    <End Role="Incidencias" Type="prueba1Model.Store.Incendias" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="usuario">
-        <PropertyRef Name="Id_usuario" />
-      </Principal>
-      <Dependent Role="Incidencias">
-        <PropertyRef Name="usuario_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="canton_id">
-    <End Role="canton" Type="prueba1Model.Store.canton" Multiplicity="1" />
-    <End Role="usuario" Type="prueba1Model.Store.usuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="canton">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="usuario">
-        <PropertyRef Name="canton_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="distrito_id">
-    <End Role="distrito" Type="prueba1Model.Store.distrito" Multiplicity="1" />
-    <End Role="usuario" Type="prueba1Model.Store.usuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="distrito">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="usuario">
-        <PropertyRef Name="distrito_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="prueba1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="canton">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_canton" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="provinciaId" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="id_perro" />
+          </Key>
+          <Property Name="id_perro" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="distrito">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_distrito" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="cantonId" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="Id_Empresa" />
+          </Key>
+          <Property Name="Id_Empresa" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_Empresa" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado_Incidencias">
+          <Key>
+            <PropertyRef Name="Id_Estado_Incidencia" />
+          </Key>
+          <Property Name="Id_Estado_Incidencia" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="habilitado">
+          <Key>
+            <PropertyRef Name="Id_habilitado" />
+          </Key>
+          <Property Name="Id_habilitado" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="habilitar" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Incendias">
+          <Key>
+            <PropertyRef Name="Id_Incidencia" />
+          </Key>
+          <Property Name="Id_Incidencia" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Latitud" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Longitud" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Dirrecion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Detalle" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Tipo_Incidencia_Id" Type="smallint" Nullable="false" />
+          <Property Name="Empresa_Id" Type="smallint" Nullable="false" />
+          <Property Name="Estado_Incidencias_Id" Type="smallint" Nullable="false" />
+          <Property Name="usuario_id" Type="smallint" Nullable="false" />
+          <Property Name="Fotografia1" Type="bit" />
+        </EntityType>
+        <EntityType Name="provincia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_provincia" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tipo_Incidencia">
+          <Key>
+            <PropertyRef Name="Id_Tipo_Incidencia" />
+          </Key>
+          <Property Name="Id_Tipo_Incidencia" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_Problematica" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="Id_usuario" />
+          </Key>
+          <Property Name="Id_usuario" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="habilitado_id" Type="smallint" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="primer_apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="segundo_apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="correo_electronico" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="contrasena" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="direccion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="codigo_activacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefono" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="cedula" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="provinciaId" Type="smallint" Nullable="false" />
+          <Property Name="canton_id" Type="smallint" Nullable="false" />
+          <Property Name="distrito_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_canton_id">
+          <End Role="canton" Type="Self.canton" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="canton">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="canton_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cantondistrito">
+          <End Role="canton" Type="Self.canton" Multiplicity="1" />
+          <End Role="distrito" Type="Self.distrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="canton">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="distrito">
+              <PropertyRef Name="cantonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_distrito_id">
+          <End Role="distrito" Type="Self.distrito" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="distrito">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="distrito_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresa_Id">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="Incendias" Type="Self.Incendias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id_Empresa" />
+            </Principal>
+            <Dependent Role="Incendias">
+              <PropertyRef Name="Empresa_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estado_Incidencia_Id">
+          <End Role="Estado_Incidencias" Type="Self.Estado_Incidencias" Multiplicity="1" />
+          <End Role="Incendias" Type="Self.Incendias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_Incidencias">
+              <PropertyRef Name="Id_Estado_Incidencia" />
+            </Principal>
+            <Dependent Role="Incendias">
+              <PropertyRef Name="Estado_Incidencias_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_habilitadousuario">
+          <End Role="habilitado" Type="Self.habilitado" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habilitado">
+              <PropertyRef Name="Id_habilitado" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="habilitado_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_provincia_id">
+          <End Role="provincia" Type="Self.provincia" Multiplicity="1" />
+          <End Role="canton" Type="Self.canton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="provincia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="canton">
+              <PropertyRef Name="provinciaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_provinciausuario">
+          <End Role="provincia" Type="Self.provincia" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="provincia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="provinciaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tipo_IncidenciaIncidencias">
+          <End Role="Tipo_Incidencia" Type="Self.Tipo_Incidencia" Multiplicity="1" />
+          <End Role="Incendias" Type="Self.Incendias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Incidencia">
+              <PropertyRef Name="Id_Tipo_Incidencia" />
+            </Principal>
+            <Dependent Role="Incendias">
+              <PropertyRef Name="Tipo_Incidencia_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Id">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="Incendias" Type="Self.Incendias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="Id_usuario" />
+            </Principal>
+            <Dependent Role="Incendias">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="prueba1ModelStoreContainer">
+          <EntitySet Name="canton" EntityType="Self.canton" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="distrito" EntityType="Self.distrito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado_Incidencias" EntityType="Self.Estado_Incidencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="habilitado" EntityType="Self.habilitado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Incendias" EntityType="Self.Incendias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="provincia" EntityType="Self.provincia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_Incidencia" EntityType="Self.Tipo_Incidencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_canton_id" Association="Self.FK_canton_id">
+            <End Role="canton" EntitySet="canton" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cantondistrito" Association="Self.FK_cantondistrito">
+            <End Role="canton" EntitySet="canton" />
+            <End Role="distrito" EntitySet="distrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_distrito_id" Association="Self.FK_distrito_id">
+            <End Role="distrito" EntitySet="distrito" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresa_Id" Association="Self.FK_Empresa_Id">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Incendias" EntitySet="Incendias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estado_Incidencia_Id" Association="Self.FK_Estado_Incidencia_Id">
+            <End Role="Estado_Incidencias" EntitySet="Estado_Incidencias" />
+            <End Role="Incendias" EntitySet="Incendias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_habilitadousuario" Association="Self.FK_habilitadousuario">
+            <End Role="habilitado" EntitySet="habilitado" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_provincia_id" Association="Self.FK_provincia_id">
+            <End Role="provincia" EntitySet="provincia" />
+            <End Role="canton" EntitySet="canton" />
+          </AssociationSet>
+          <AssociationSet Name="FK_provinciausuario" Association="Self.FK_provinciausuario">
+            <End Role="provincia" EntitySet="provincia" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tipo_IncidenciaIncidencias" Association="Self.FK_Tipo_IncidenciaIncidencias">
+            <End Role="Tipo_Incidencia" EntitySet="Tipo_Incidencia" />
+            <End Role="Incendias" EntitySet="Incendias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Id" Association="Self.FK_Usuario_Id">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="Incendias" EntitySet="Incendias" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="prueba1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -426,7 +402,6 @@
             <End Role="usuario" EntitySet="usuario" />
           </AssociationSet>
           <EntitySet Name="Incendias" EntityType="prueba1Model.Incidencias" />
-          <EntitySet Name="Fotografia" EntityType="prueba1Model.Fotografia" />
           <EntitySet Name="Empresa" EntityType="prueba1Model.Empresa" />
           <EntitySet Name="Tipo_Incidencia" EntityType="prueba1Model.Tipo_Incidencia" />
           <EntitySet Name="Estado_Incidencias" EntityType="prueba1Model.Estado_Incidencias" />
@@ -436,10 +411,6 @@
           </AssociationSet>
           <AssociationSet Name="Empresa_Id" Association="prueba1Model.Empresa_Id">
             <End Role="Empresa" EntitySet="Empresa" />
-            <End Role="Incidencias" EntitySet="Incendias" />
-          </AssociationSet>
-          <AssociationSet Name="Fotografia_Id" Association="prueba1Model.Fotografia_Id">
-            <End Role="Fotografia" EntitySet="Fotografia" />
             <End Role="Incidencias" EntitySet="Incendias" />
           </AssociationSet>
           <AssociationSet Name="Estado_Incidencia_Id" Association="prueba1Model.Estado_Incidencia_Id">
@@ -476,35 +447,26 @@
             <PropertyRef Name="Id_Incidencia" />
           </Key>
           <Property Name="Id_Incidencia" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Latitud" Type="String" Nullable="false" />
-          <Property Name="Longitud" Type="String" Nullable="false" />
-          <Property Name="Dirrecion" Type="String" Nullable="false" />
-          <Property Name="Detalle" Type="String" Nullable="false" />
+          <Property Name="Latitud" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Longitud" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Dirrecion" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Detalle" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Tipo_Incidencia" Relationship="prueba1Model.Tipo_IncidenciaIncidencias" FromRole="Incidencias" ToRole="Tipo_Incidencia" />
           <Property Name="Tipo_Incidencia_Id" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Empresa" Relationship="prueba1Model.Empresa_Id" FromRole="Incidencias" ToRole="Empresa" />
           <Property Name="Empresa_Id" Type="Int16" Nullable="false" />
-          <NavigationProperty Name="Fotografia" Relationship="prueba1Model.Fotografia_Id" FromRole="Incidencias" ToRole="Fotografia" />
-          <Property Name="Fotografia_Id" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Estado_Incidencia_Id" Relationship="prueba1Model.Estado_Incidencia_Id" FromRole="Incidencias" ToRole="Estado_Incidencias" />
           <Property Name="Estado_Incidencias_Id" Type="Int16" Nullable="false" />
           <NavigationProperty Name="usuario" Relationship="prueba1Model.Usuario_Id" FromRole="Incidencias" ToRole="usuario" />
           <Property Name="usuario_id" Type="Int16" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Fotografia">
-          <Key>
-            <PropertyRef Name="Id_Fotografia" />
-          </Key>
-          <Property Name="Id_Fotografia" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Foto" Type="String" Nullable="false" />
-          <NavigationProperty Name="Incidencias" Relationship="prueba1Model.Fotografia_Id" FromRole="Fotografia" ToRole="Incidencias" />
+          <Property Name="Fotografia1" Type="Boolean" />
         </EntityType>
         <EntityType Name="Empresa">
           <Key>
             <PropertyRef Name="Id_Empresa" />
           </Key>
           <Property Name="Id_Empresa" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre_Empresa" Type="String" Nullable="false" />
+          <Property Name="Nombre_Empresa" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Incidencias" Relationship="prueba1Model.Empresa_Id" FromRole="Empresa" ToRole="Incidencias" />
         </EntityType>
         <EntityType Name="Tipo_Incidencia">
@@ -512,7 +474,7 @@
             <PropertyRef Name="Id_Tipo_Incidencia" />
           </Key>
           <Property Name="Id_Tipo_Incidencia" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre_Problematica" Type="String" Nullable="false" />
+          <Property Name="Nombre_Problematica" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Incidencias" Relationship="prueba1Model.Tipo_IncidenciaIncidencias" FromRole="Tipo_Incidencia" ToRole="Incidencias" />
         </EntityType>
         <EntityType Name="Estado_Incidencias">
@@ -520,7 +482,7 @@
             <PropertyRef Name="Id_Estado_Incidencia" />
           </Key>
           <Property Name="Id_Estado_Incidencia" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Estado" Type="String" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Incidencias" Relationship="prueba1Model.Estado_Incidencia_Id" FromRole="Estado_Incidencias" ToRole="Incidencias" />
         </EntityType>
         <Association Name="Tipo_IncidenciaIncidencias">
@@ -544,18 +506,6 @@
             </Principal>
             <Dependent Role="Incidencias">
               <PropertyRef Name="Empresa_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Fotografia_Id">
-          <End Type="prueba1Model.Fotografia" Role="Fotografia" Multiplicity="1" />
-          <End Type="prueba1Model.Incidencias" Role="Incidencias" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Fotografia">
-              <PropertyRef Name="Id_Fotografia" />
-            </Principal>
-            <Dependent Role="Incidencias">
-              <PropertyRef Name="Fotografia_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -685,17 +635,9 @@
           <ScalarProperty Name="Detalle" ColumnName="Detalle" />
           <ScalarProperty Name="Tipo_Incidencia_Id" ColumnName="Tipo_Incidencia_Id" />
           <ScalarProperty Name="Empresa_Id" ColumnName="Empresa_Id" />
-          <ScalarProperty Name="Fotografia_Id" ColumnName="Fotografia_Id" />
           <ScalarProperty Name="Estado_Incidencias_Id" ColumnName="Estado_Incidencias_Id" />
           <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Fotografia">
-      <EntityTypeMapping TypeName="IsTypeOf(prueba1Model.Fotografia)">
-        <MappingFragment StoreEntitySet="Fotografia">
-          <ScalarProperty Name="Id_Fotografia" ColumnName="Id_Fotografia" />
-          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="Fotografia1" ColumnName="Fotografia1" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

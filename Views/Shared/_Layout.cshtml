@@ -23,12 +23,17 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
                     <li>@Html.ActionLink("Registro usuarios", "Create", "usuario")</li>
-                    <li>@Html.ActionLink("Registro de incidencias", "RegistroIncidencias", "Home")</li>
+
                     <li>@Html.ActionLink("Actualizacion de incidencias", "Contact", "Home")</li>
-                    
-                   
+
                     <li>@Html.ActionLink("Login", "Index", "Login")</li>
-                   
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="/Login/logout">Cerrar sesion</a></li>
+                        
+                    }
+
                 </ul>
             </div>
         </div>

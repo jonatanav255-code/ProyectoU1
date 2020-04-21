@@ -129,7 +129,6 @@
       <End Role="usuario" EntitySet="usuario" />
     </AssociationSet>
     <EntitySet Name="Incendias" EntityType="prueba1Model.Incidencias" />
-    <EntitySet Name="Fotografia" EntityType="prueba1Model.Fotografia" />
     <EntitySet Name="Empresa" EntityType="prueba1Model.Empresa" />
     <EntitySet Name="Tipo_Incidencia" EntityType="prueba1Model.Tipo_Incidencia" />
     <EntitySet Name="Estado_Incidencias" EntityType="prueba1Model.Estado_Incidencias" />
@@ -139,10 +138,6 @@
     </AssociationSet>
     <AssociationSet Name="Empresa_Id" Association="prueba1Model.Empresa_Id">
       <End Role="Empresa" EntitySet="Empresa" />
-      <End Role="Incidencias" EntitySet="Incendias" />
-    </AssociationSet>
-    <AssociationSet Name="Fotografia_Id" Association="prueba1Model.Fotografia_Id">
-      <End Role="Fotografia" EntitySet="Fotografia" />
       <End Role="Incidencias" EntitySet="Incendias" />
     </AssociationSet>
     <AssociationSet Name="Estado_Incidencia_Id" Association="prueba1Model.Estado_Incidencia_Id">
@@ -179,35 +174,26 @@
       <PropertyRef Name="Id_Incidencia" />
     </Key>
     <Property Name="Id_Incidencia" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Latitud" Type="String" Nullable="false" />
-    <Property Name="Longitud" Type="String" Nullable="false" />
-    <Property Name="Dirrecion" Type="String" Nullable="false" />
-    <Property Name="Detalle" Type="String" Nullable="false" />
+    <Property Name="Latitud" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Longitud" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Dirrecion" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Detalle" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Tipo_Incidencia" Relationship="prueba1Model.Tipo_IncidenciaIncidencias" FromRole="Incidencias" ToRole="Tipo_Incidencia" />
     <Property Name="Tipo_Incidencia_Id" Type="Int16" Nullable="false" />
     <NavigationProperty Name="Empresa" Relationship="prueba1Model.Empresa_Id" FromRole="Incidencias" ToRole="Empresa" />
     <Property Name="Empresa_Id" Type="Int16" Nullable="false" />
-    <NavigationProperty Name="Fotografia" Relationship="prueba1Model.Fotografia_Id" FromRole="Incidencias" ToRole="Fotografia" />
-    <Property Name="Fotografia_Id" Type="Int16" Nullable="false" />
     <NavigationProperty Name="Estado_Incidencia_Id" Relationship="prueba1Model.Estado_Incidencia_Id" FromRole="Incidencias" ToRole="Estado_Incidencias" />
     <Property Name="Estado_Incidencias_Id" Type="Int16" Nullable="false" />
     <NavigationProperty Name="usuario" Relationship="prueba1Model.Usuario_Id" FromRole="Incidencias" ToRole="usuario" />
     <Property Name="usuario_id" Type="Int16" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Fotografia">
-    <Key>
-      <PropertyRef Name="Id_Fotografia" />
-    </Key>
-    <Property Name="Id_Fotografia" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Foto" Type="String" Nullable="false" />
-    <NavigationProperty Name="Incidencias" Relationship="prueba1Model.Fotografia_Id" FromRole="Fotografia" ToRole="Incidencias" />
+    <Property Name="Fotografia1" Type="Boolean" />
   </EntityType>
   <EntityType Name="Empresa">
     <Key>
       <PropertyRef Name="Id_Empresa" />
     </Key>
     <Property Name="Id_Empresa" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre_Empresa" Type="String" Nullable="false" />
+    <Property Name="Nombre_Empresa" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Incidencias" Relationship="prueba1Model.Empresa_Id" FromRole="Empresa" ToRole="Incidencias" />
   </EntityType>
   <EntityType Name="Tipo_Incidencia">
@@ -215,7 +201,7 @@
       <PropertyRef Name="Id_Tipo_Incidencia" />
     </Key>
     <Property Name="Id_Tipo_Incidencia" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre_Problematica" Type="String" Nullable="false" />
+    <Property Name="Nombre_Problematica" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Incidencias" Relationship="prueba1Model.Tipo_IncidenciaIncidencias" FromRole="Tipo_Incidencia" ToRole="Incidencias" />
   </EntityType>
   <EntityType Name="Estado_Incidencias">
@@ -223,7 +209,7 @@
       <PropertyRef Name="Id_Estado_Incidencia" />
     </Key>
     <Property Name="Id_Estado_Incidencia" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Estado" Type="String" Nullable="false" />
+    <Property Name="Estado" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Incidencias" Relationship="prueba1Model.Estado_Incidencia_Id" FromRole="Estado_Incidencias" ToRole="Incidencias" />
   </EntityType>
   <Association Name="Tipo_IncidenciaIncidencias">
@@ -247,18 +233,6 @@
       </Principal>
       <Dependent Role="Incidencias">
         <PropertyRef Name="Empresa_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Fotografia_Id">
-    <End Type="prueba1Model.Fotografia" Role="Fotografia" Multiplicity="1" />
-    <End Type="prueba1Model.Incidencias" Role="Incidencias" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Fotografia">
-        <PropertyRef Name="Id_Fotografia" />
-      </Principal>
-      <Dependent Role="Incidencias">
-        <PropertyRef Name="Fotografia_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

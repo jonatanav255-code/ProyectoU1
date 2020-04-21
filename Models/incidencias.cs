@@ -21,13 +21,12 @@ namespace PortalRegistroIncidencias.Models
         public string Detalle { get; set; }
         public short Tipo_Incidencia_Id { get; set; }
         public short Empresa_Id { get; set; }
-        public short Fotografia_Id { get; set; }
         public short Estado_Incidencias_Id { get; set; }
         public short usuario_id { get; set; }
+        public Nullable<bool> Fotografia1 { get; set; }
     
         public virtual Tipo_Incidencia Tipo_Incidencia { get; set; }
         public virtual Empresa Empresa { get; set; }
-        public virtual Fotografia Fotografia { get; set; }
         public virtual Estado_Incidencias Estado_Incidencia_Id { get; set; }
         public virtual usuario usuario { get; set; }
     }

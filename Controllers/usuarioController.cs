@@ -15,49 +15,140 @@ using PortalRegistroIncidencias.Models;
 
 namespace PortalRegistroIncidencias.Controllers
 {
+   [Authorize]
     public class usuarioController : Controller
     {
-                
-
-            private prueba1Entities db = new prueba1Entities();
 
 
-            // GET: usuario
-            public ActionResult Index()
+        private prueba1Entities db = new prueba1Entities();
+
+
+        // GET: usuario
+        public ActionResult Index()
+        {
+            var usuario = db.usuario.Include(u => u.habilitado).Include(u => u.provincia).Include(u => u.canton).Include(u => u.distrito);
+            return View(usuario.ToList());
+        }
+
+        // GET: usuario/Details/5
+        public ActionResult Details(short? id)
+        {
+            if (id == null)
             {
-                var usuario = db.usuario.Include(u => u.habilitado).Include(u => u.provincia).Include(u => u.canton).Include(u => u.distrito);
-                return View(usuario.ToList());
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            usuario usuario = db.usuario.Find(id);
+            if (usuario == null)
+            {
+                return HttpNotFound();
+            }
+            return View(usuario);
+        }
+
+
+
+
+
+
+        // GET: usuario/Create
+       
+        public ActionResult Create()
+        {
+            //ViewBag.habilitado_id = new SelectList(db.habilitado, "Id_habilitado", "habilitar");
+            List<provincia> CountryList = db.provincia.ToList();
+            ViewBag.CountryList= new SelectList(CountryList, "Id", "nombre_provincia");
+           // ViewBag.canton_id = new SelectList(db.canton, "Id", "nombre_canton");
+            ViewBag.distrito_Id = new SelectList(db.distrito, "Id", "nombre_distrito");
+            return View();
+
+            // ViewBag.provinciaId = new SelectList(db.provincia , "Id", "nombre_provincia");
+
+
+
+            //ViewBag.canton_id = new SelectList(db.canton, "Id", "nombre_canton");
+
+            // ViewBag.provinciaId = new SelectList(db.provincia, "Id", "nombre_provincia");
+
+            // ViewBag.canton_id = new SelectList(db.canton, "Id", "nombre_canton");
+
+
+
+            //ViewBag.distrito_Id = new SelectList(db.distrito, "Id", "nombre_distrito");
+              //  return View();
             }
 
-            // GET: usuario/Details/5
-            public ActionResult Details(short? id)
+        public JsonResult GetStateList(int provinciaId)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            List<canton> StateList = db.canton.Where(x => x.provinciaId == provinciaId).ToList();
+            return Json(StateList, JsonRequestBehavior.AllowGet);
+
+            /*public JsonResult GetStateList(int CountryId)
             {
-                if (id == null)
+                db.Configuration.ProxyCreationEnabled = false;
+                List<State> StateList = db.States.Where(x => x.CountryId == CountryId).ToList();
+                return Json(StateList, JsonRequestBehavior.AllowGet);
+
+            }
+            */
+
+        }
+
+
+
+
+
+
+
+
+        /*
+        public ActionResult GetCantones(int? provinciaId, int? stateId, int? cityId)
+        {
+            if (provinciaId.HasValue)
+            {
+                var cantones = (from canton in db.canton
+                                where canton.provinciaId == provinciaId.Value
+                                select canton).ToList();
+
+                foreach (var canton in cantones)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    model.States.Add(new SelectListItem { Text = state.StateName, Value = state.StateId.ToString() });
                 }
-                usuario usuario = db.usuario.Find(id);
-                if (usuario == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(usuario);
+                return view()
             }
+        }
 
-            // GET: usuario/Create
-            public ActionResult Create()
-            {
-                ViewBag.habilitado_id = new SelectList(db.habilitado, "Id_habilitado", "habilitar");
-                ViewBag.provinciaId = new SelectList(db.provincia, "Id", "nombre_provincia");
-                ViewBag.canton_id = new SelectList(db.canton, "Id", "nombre_canton");
-                ViewBag.distrito_Id = new SelectList(db.distrito, "Id", "nombre_distrito");
-                return View();
-            }
+            *
 
-            // POST: usuario/Create
-            // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-            // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
-            [HttpPost]
+
+            public JsonResult GetProvinciasList(int provinciaId)
+        {
+         
+                var territories = db.canton.Where(x => x.provinciaId == provinciaId).ToList();
+                return Json(territories, JsonRequestBehavior.AllowGet);
+          
+        }
+
+
+        /*
+        public ActionResult GetCantonesList(int provinciaId)
+        {
+
+            List<canton> cantonesLista = db.canton.Where(x => x.provinciaId == provinciaId).ToList();
+            ViewBag.Clista = new SelectList(cantonesLista, "Sid", "Sname");
+            return PartialView();
+
+        }
+        */
+
+
+
+
+
+        // POST: usuario/Create
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
             [ValidateAntiForgeryToken]
             public ActionResult Create([Bind(Include = "Id_usuario,habilitado_id,nombre,primer_apellido,segundo_apellido,correo_electronico,contrasena,direccion,codigo_activacion,telefono,cedula,provinciaId,canton_id,distrito_Id")] usuario usuario)
             {

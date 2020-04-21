@@ -73,17 +73,9 @@
           <ScalarProperty Name="Detalle" ColumnName="Detalle" />
           <ScalarProperty Name="Tipo_Incidencia_Id" ColumnName="Tipo_Incidencia_Id" />
           <ScalarProperty Name="Empresa_Id" ColumnName="Empresa_Id" />
-          <ScalarProperty Name="Fotografia_Id" ColumnName="Fotografia_Id" />
           <ScalarProperty Name="Estado_Incidencias_Id" ColumnName="Estado_Incidencias_Id" />
           <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Fotografia">
-      <EntityTypeMapping TypeName="IsTypeOf(prueba1Model.Fotografia)">
-        <MappingFragment StoreEntitySet="Fotografia">
-          <ScalarProperty Name="Id_Fotografia" ColumnName="Id_Fotografia" />
-          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="Fotografia1" ColumnName="Fotografia1" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

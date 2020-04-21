@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d022963af32548259c4ef70a06066345" Name="Diagram1" ZoomLevel="52">
+      <Diagram DiagramId="d022963af32548259c4ef70a06066345" Name="Diagram1" ZoomLevel="77">
         <EntityTypeShape EntityType="prueba1Model.canton" Width="1.5" PointX="5.5" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="prueba1Model.cliente" Width="1.5" PointX="22.75" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="prueba1Model.distrito" Width="1.5" PointX="9.25" PointY="1" IsExpanded="true" />
@@ -16,13 +16,11 @@
         <AssociationConnector Association="prueba1Model.FK_habilitadousuario" ManuallyRouted="false" />
         <AssociationConnector Association="prueba1Model.provinciausuario" />
         <EntityTypeShape EntityType="prueba1Model.Incidencias" Width="3.375" PointX="6.875" PointY="5" />
-        <EntityTypeShape EntityType="prueba1Model.Fotografia" Width="1.5" PointX="11.375" PointY="7.125" />
         <EntityTypeShape EntityType="prueba1Model.Empresa" Width="1.5" PointX="9.625" PointY="9.375" />
         <EntityTypeShape EntityType="prueba1Model.Tipo_Incidencia" Width="2.125" PointX="5.625" PointY="9.625" />
         <EntityTypeShape EntityType="prueba1Model.Estado_Incidencias" Width="2" PointX="11.625" PointY="4.875" />
         <AssociationConnector Association="prueba1Model.Tipo_IncidenciaIncidencias" />
         <AssociationConnector Association="prueba1Model.Empresa_Id" />
-        <AssociationConnector Association="prueba1Model.Fotografia_Id" />
         <AssociationConnector Association="prueba1Model.Estado_Incidencia_Id" />
         <AssociationConnector Association="prueba1Model.Usuario_Id" />
         <AssociationConnector Association="prueba1Model.canton_id" />

@@ -343,9 +343,6 @@
     <Compile Include="Models\Estado_Incidencias.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Fotografia.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\habilitado.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -408,6 +405,7 @@
     </Content>
     <Content Include="Models\Model12.edmx.sql" />
     <Content Include="Models\Model13.edmx.sql" />
+    <Content Include="Models\Model15.edmx.sql" />
     <Content Include="Models\Modelincidencia.edmx.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

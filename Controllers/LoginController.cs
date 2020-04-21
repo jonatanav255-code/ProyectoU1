@@ -4,7 +4,7 @@ using System.Linq;
 
 using System.Web;
 using System.Web.Mvc;
-
+using System.Web.Security;
 using MailKit.Net.Smtp;
 using MimeKit;
 using PortalRegistroIncidencias.Models;
@@ -30,12 +30,13 @@ namespace PortalRegistroIncidencias.Controllers
 
             if (userdetails == null)
             {
+               
                 return RedirectToAction("Index", "Home");
             }
             else
             {
                 Session["userID"] = userdetails.Id_usuario;
-
+                FormsAuthentication.SetAuthCookie(UserModel.correo_electronico, true);
 
                 //return RedirectToAction("");
 
@@ -44,6 +45,12 @@ namespace PortalRegistroIncidencias.Controllers
 
             }
         }
+        [Authorize]
+        public ActionResult logout() {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+      
         [HttpGet]
         public ActionResult ConfirmarCodigo(usuario UserModel)
         {

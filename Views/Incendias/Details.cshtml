@@ -1,0 +1,91 @@
+﻿@model PortalRegistroIncidencias.Models.Incidencias
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "ConfirmarCodigo";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Incidencias</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dirrecion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dirrecion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Detalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detalle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fotografia1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fotografia1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_Incidencia.Nombre_Problematica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_Incidencia.Nombre_Problematica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empresa.Nombre_Empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa.Nombre_Empresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado_Incidencia_Id.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado_Incidencia_Id.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuario.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuario.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Incidencia }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

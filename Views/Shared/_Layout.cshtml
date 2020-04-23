@@ -23,15 +23,22 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
                     <li>@Html.ActionLink("Registro usuarios", "Create", "usuario")</li>
+                    <li>@Html.ActionLink("Creacion incidencias", "Create", "Incendias")</li>
 
                     <li>@Html.ActionLink("Actualizacion de incidencias", "Contact", "Home")</li>
 
                     <li>@Html.ActionLink("Login", "Index", "Login")</li>
 
+
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li><a href="/Login/logout">Cerrar sesion</a></li>
-                        
+                        <li style="color:blue">Username : @Session["userID"]</li>
+                        <li style="color:red">codigo : @Session["codigoActivacion"]</li>
+                        <li style="color:red">habilitado : @Session["habilitado"]</li>
+                        <li style="color:red">correo : @Session["correo"]</li>
+
+
                     }
 
                 </ul>

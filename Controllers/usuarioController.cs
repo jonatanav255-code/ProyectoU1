@@ -7,15 +7,17 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using MailKit.Net.Smtp;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 using Microsoft.AspNetCore.Identity;
+using MimeKit;
 using PortalRegistroIncidencias.Models;
 
 namespace PortalRegistroIncidencias.Controllers
 {
-   [Authorize]
+   
     public class usuarioController : Controller
     {
 
@@ -79,67 +81,14 @@ namespace PortalRegistroIncidencias.Controllers
 
         public JsonResult GetStateList(int provinciaId)
         {
+          //  var userss = User.Identity.GetUserId();
+           
             db.Configuration.ProxyCreationEnabled = false;
             List<canton> StateList = db.canton.Where(x => x.provinciaId == provinciaId).ToList();
             return Json(StateList, JsonRequestBehavior.AllowGet);
-
-            /*public JsonResult GetStateList(int CountryId)
-            {
-                db.Configuration.ProxyCreationEnabled = false;
-                List<State> StateList = db.States.Where(x => x.CountryId == CountryId).ToList();
-                return Json(StateList, JsonRequestBehavior.AllowGet);
-
-            }
-            */
-
         }
 
 
-
-
-
-
-
-
-        /*
-        public ActionResult GetCantones(int? provinciaId, int? stateId, int? cityId)
-        {
-            if (provinciaId.HasValue)
-            {
-                var cantones = (from canton in db.canton
-                                where canton.provinciaId == provinciaId.Value
-                                select canton).ToList();
-
-                foreach (var canton in cantones)
-                {
-                    model.States.Add(new SelectListItem { Text = state.StateName, Value = state.StateId.ToString() });
-                }
-                return view()
-            }
-        }
-
-            *
-
-
-            public JsonResult GetProvinciasList(int provinciaId)
-        {
-         
-                var territories = db.canton.Where(x => x.provinciaId == provinciaId).ToList();
-                return Json(territories, JsonRequestBehavior.AllowGet);
-          
-        }
-
-
-        /*
-        public ActionResult GetCantonesList(int provinciaId)
-        {
-
-            List<canton> cantonesLista = db.canton.Where(x => x.provinciaId == provinciaId).ToList();
-            ViewBag.Clista = new SelectList(cantonesLista, "Sid", "Sname");
-            return PartialView();
-
-        }
-        */
 
 
 
@@ -149,28 +98,65 @@ namespace PortalRegistroIncidencias.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-            [ValidateAntiForgeryToken]
-            public ActionResult Create([Bind(Include = "Id_usuario,habilitado_id,nombre,primer_apellido,segundo_apellido,correo_electronico,contrasena,direccion,codigo_activacion,telefono,cedula,provinciaId,canton_id,distrito_Id")] usuario usuario)
+        [ValidateAntiForgeryToken]
+        
+        public ActionResult Create([Bind(Include = "Id_usuario,habilitado_id,nombre,primer_apellido,segundo_apellido,correo_electronico,contrasena,direccion,codigo_activacion,telefono,cedula,provinciaId,canton_id,distrito_Id")] usuario usuario)
+        {
+            bool correoInvalido = db.usuario.Any(x => x.correo_electronico == usuario.correo_electronico);
+            usuario.habilitado_id = 2;
+            Random re = new Random();
+            usuario.codigo_activacion = re.Next().ToString();
+
+
+            if (correoInvalido == true)
             {
-                usuario.habilitado_id = 2;
-                usuario.codigo_activacion = "hola";
-                if (ModelState.IsValid)
+                // return RedirectToAction("Index", "Home");
+                return View("Error");
+            }
+
+            else
+            {
+                db.usuario.Add(usuario);
+                db.SaveChanges();
+
+
+                var message = new MimeMessage();
+                message.From.Add(new MailboxAddress("prueba", "jonatanav2555@gmail.com"));
+                message.To.Add(new MailboxAddress("prueba", "jonatanav255@hotmail.com"));
+                message.Subject = "Test de correo electronico";
+                message.Body = new TextPart("plain")
+
                 {
-                    db.usuario.Add(usuario);
-                        db.SaveChanges();
-                        return View("Error");
-                    }
-                                
-                
-                ViewBag.habilitado_id = new SelectList(db.habilitado, "Id_habilitado", "habilitar", usuario.habilitado_id);
+                    Text = usuario.codigo_activacion
+
+                };
+
+                using (var client = new SmtpClient())
+                {
+                    client.Connect("smtp.gmail.com", 587, false);
+
+                    client.Authenticate("jonatanav2555@gmail.com", "moneda@123");
+
+
+                    client.Send(message);
+                    client.Disconnect(true);
+                    
+                }
+               
+
+            }
+            
+            ViewBag.habilitado_id = new SelectList(db.habilitado, "Id_habilitado", "habilitar", usuario.habilitado_id);
                 ViewBag.provinciaId = new SelectList(db.provincia, "Id", "nombre_provincia", usuario.provinciaId);
                 ViewBag.canton_id = new SelectList(db.canton, "Id", "nombre_canton", usuario.canton_id);
                 ViewBag.distrito_Id = new SelectList(db.distrito, "Id", "nombre_distrito", usuario.distrito_Id);
                 return View(usuario);
-            }
+            //    return RedirectToAction("Index");
 
-            // GET: usuario/Edit/5
-            public ActionResult Edit(short? id)
+        }
+
+        // GET: usuario/Edit/5
+        public ActionResult Edit(short? id)
             {
                 if (id == null)
                 {

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<PortalRegistroIncidencias.Models.Incidencias>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dirrecion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Detalle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empresa.Nombre_Empresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado_Incidencia_Id.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipo_Incidencia.Nombre_Problematica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usuario.nombre)
+        </th>
+        <th></th>
+    </tr>
+    @if (Model == null)
+    {
+        <h2>No existen Incidencias</h2>
+        <br />
+    }
+    else
+    {
+        foreach (var item in Model )
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Latitud)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Longitud)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dirrecion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Detalle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empresa.Nombre_Empresa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado_Incidencia_Id.Estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo_Incidencia.Nombre_Problematica)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usuario.nombre)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id_Incidencia }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id_Incidencia }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id_Incidencia })
+                </td>
+            </tr>
+        }
+
+    }
+
+</table>

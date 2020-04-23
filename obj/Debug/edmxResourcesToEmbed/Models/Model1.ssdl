@@ -57,7 +57,7 @@
     <Property Name="Empresa_Id" Type="smallint" Nullable="false" />
     <Property Name="Estado_Incidencias_Id" Type="smallint" Nullable="false" />
     <Property Name="usuario_id" Type="smallint" Nullable="false" />
-    <Property Name="Fotografia1" Type="bit" />
+    <Property Name="Fotografia1" Type="varbinary(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="provincia">
     <Key>

@@ -62,7 +62,7 @@
           <Property Name="Empresa_Id" Type="smallint" Nullable="false" />
           <Property Name="Estado_Incidencias_Id" Type="smallint" Nullable="false" />
           <Property Name="usuario_id" Type="smallint" Nullable="false" />
-          <Property Name="Fotografia1" Type="bit" />
+          <Property Name="Fotografia1" Type="varbinary(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="provincia">
           <Key>
@@ -459,7 +459,7 @@
           <Property Name="Estado_Incidencias_Id" Type="Int16" Nullable="false" />
           <NavigationProperty Name="usuario" Relationship="prueba1Model.Usuario_Id" FromRole="Incidencias" ToRole="usuario" />
           <Property Name="usuario_id" Type="Int16" Nullable="false" />
-          <Property Name="Fotografia1" Type="Boolean" />
+          <Property Name="Fotografia1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
         </EntityType>
         <EntityType Name="Empresa">
           <Key>

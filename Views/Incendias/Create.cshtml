@@ -1,0 +1,120 @@
+﻿@model PortalRegistroIncidencias.Models.Incidencias
+
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css" />
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAk9IwR5rx2h735qdhX50jf54Gl8EiEdLQ'></script>
+    <script src="~/Scripts/locationpicker.jquery.js"></script>
+    <div class="form-horizontal">
+        <h4>Incendias</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Dirrecion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Dirrecion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Dirrecion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div id="ModalMapPreview" style="width:90%; height:300px;"></div>
+        <div class="clearfix"> &nbsp;</div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Latitud, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Latitud, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Latitud, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Longitud, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Longitud, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Longitud, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="clearfix"></div>
+        <script>$('#ModalMapPreview').locationpicker({
+                radius: 0,
+                location: {
+                    latitude: 9.9333296,
+                    longitude: -84.0833282
+                },
+                enableAutocomplete: true,
+                inputBinding: {
+                    latitudeInput: $('#Latitud'),
+                    locationNameInput: $('#Dirrecion'),
+                    longitudeInput: $('#Longitud')
+                }
+            });
+            $('#ModalMap').on('shown.bs.modal', function () {
+                $('#ModalMapPreview').locationpicker('autosize');
+            });</script>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Detalle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Detalle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Detalle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tipo_Incidencia_Id, "Tipo_Incidencia_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Tipo_Incidencia_Id", null,"--Select Country--", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Tipo_Incidencia_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Empresa_Id, "Empresa_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Empresa_Id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Empresa_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fotografia1, "Fotografia1", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                
+                <input type="file" name="Fileload" />
+                @Html.ValidationMessageFor(model => model.Fotografia1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Estado_Incidencias_Id, "Estado_Incidencias_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Estado_Incidencias_Id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Estado_Incidencias_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
